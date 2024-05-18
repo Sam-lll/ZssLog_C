@@ -1,0 +1,8 @@
+include ../makefile
+
+OBJS   = ZssUtil.c ZssLog.c
+all:	${OBJS}
+	$cc -c ${OBJS}
+
+clean:
+	rm -f *.o

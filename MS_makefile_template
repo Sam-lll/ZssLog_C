@@ -1,0 +1,13 @@
+DIRS = src dlltest
+
+INC_DIR=/I..\include /I"D:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.39.33519\include"
+
+CPP = cl
+LINK = link
+CPPFLAGS = /EHsc /nologo $(INC_DIR) /DWIN32 /DZSSLOG_EXPORTS /D_DEBUG
+
+all: $(OBJS)
+#	This statment is dll exports interface, if does not define it, the dll has no entry point,
+#	you can use "dumpbin /exports xxx.dll" to look the exports interface.
+
+# 	/DZSSLOG_EXPORTS

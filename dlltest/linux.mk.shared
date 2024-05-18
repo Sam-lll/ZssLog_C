@@ -1,0 +1,5 @@
+all:
+	gcc -fPIC -shared -o dlZssLog.so ZssLog.c ZssUtil.c 
+
+clean:
+	rm -f *.so

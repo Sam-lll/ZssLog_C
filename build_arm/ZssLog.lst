@@ -1,0 +1,1400 @@
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"ZssLog.c"
+  14              		.text
+  15              		.global	g_logdir
+  16              		.section	.bss.g_logdir,"aw",%nobits
+  17              		.align	2
+  20              	g_logdir:
+  21 0000 00000000 		.space	260
+  21      00000000 
+  21      00000000 
+  21      00000000 
+  21      00000000 
+  22              		.global	g_logfile
+  23              		.section	.bss.g_logfile,"aw",%nobits
+  24              		.align	2
+  27              	g_logfile:
+  28 0000 00000000 		.space	4
+  29              		.global	g_log_enable
+  30              		.section	.bss.g_log_enable,"aw",%nobits
+  31              		.align	2
+  34              	g_log_enable:
+  35 0000 00000000 		.space	4
+  36              		.global	g_logfile_stamp
+  37              		.section	.bss.g_logfile_stamp,"aw",%nobits
+  38              		.align	2
+  41              	g_logfile_stamp:
+  42 0000 00000000 		.space	4
+  43              		.global	g_auto_delete
+  44              		.section	.bss.g_auto_delete,"aw",%nobits
+  45              		.align	2
+  48              	g_auto_delete:
+  49 0000 00000000 		.space	4
+  50              		.global	g_auto_delete_keep_days
+  51              		.section	.bss.g_auto_delete_keep_days,"aw",%nobits
+  52              		.align	2
+  55              	g_auto_delete_keep_days:
+  56 0000 00000000 		.space	4
+  57              		.global	g_fp
+  58              		.section	.bss.g_fp,"aw",%nobits
+  59              		.align	2
+  62              	g_fp:
+  63 0000 00000000 		.space	4
+  64              		.section	.rodata
+  65              		.align	2
+  66              	.LC0:
+  67 0000 433A5C7A 		.ascii	"C:\\zsslog.ini\000"
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s 			page 2
+
+
+  67      73736C6F 
+  67      672E696E 
+  67      6900
+  68 000e 0000     		.align	2
+  69              	.LC1:
+  70 0010 456E6162 		.ascii	"EnableLog\000"
+  70      6C654C6F 
+  70      6700
+  71 001a 0000     		.align	2
+  72              	.LC2:
+  73 001c 5A737343 		.ascii	"ZssConfig\000"
+  73      6F6E6669 
+  73      6700
+  74 0026 0000     		.align	2
+  75              	.LC3:
+  76 0028 4C6F6744 		.ascii	"LogDir_WinSNMPDll\000"
+  76      69725F57 
+  76      696E534E 
+  76      4D50446C 
+  76      6C00
+  77 003a 0000     		.align	2
+  78              	.LC4:
+  79 003c 25735C25 		.ascii	"%s\\%s\000"
+  79      7300
+  80 0042 0000     		.align	2
+  81              	.LC5:
+  82 0044 456E6162 		.ascii	"EnableAutoDelete\000"
+  82      6C654175 
+  82      746F4465 
+  82      6C657465 
+  82      00
+  83 0055 000000   		.align	2
+  84              	.LC6:
+  85 0058 4175746F 		.ascii	"AutoDeleteKeepDays\000"
+  85      44656C65 
+  85      74654B65 
+  85      65704461 
+  85      797300
+  86              		.section	.text.ZssLog,"ax",%progbits
+  87              		.align	1
+  88              		.global	ZssLog
+  89              		.syntax unified
+  90              		.thumb
+  91              		.thumb_func
+  93              	ZssLog:
+  94              		@ args = 0, pretend = 0, frame = 536
+  95              		@ frame_needed = 1, uses_anonymous_args = 0
+  96 0000 90B5     		push	{r4, r7, lr}
+  97 0002 ADF5077D 		sub	sp, sp, #540
+  98 0006 00AF     		add	r7, sp, #0
+  99 0008 07F50673 		add	r3, r7, #536
+ 100 000c A3F50573 		sub	r3, r3, #532
+ 101 0010 1860     		str	r0, [r3]
+ 102 0012 07F50673 		add	r3, r7, #536
+ 103 0016 A3F58673 		sub	r3, r3, #268
+ 104 001a 1846     		mov	r0, r3
+ 105 001c 4FF48273 		mov	r3, #260
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s 			page 3
+
+
+ 106 0020 1A46     		mov	r2, r3
+ 107 0022 0021     		movs	r1, #0
+ 108 0024 FFF7FEFF 		bl	memset
+ 109 0028 07F50673 		add	r3, r7, #536
+ 110 002c A3F50473 		sub	r3, r3, #528
+ 111 0030 1846     		mov	r0, r3
+ 112 0032 4FF48273 		mov	r3, #260
+ 113 0036 1A46     		mov	r2, r3
+ 114 0038 0021     		movs	r1, #0
+ 115 003a FFF7FEFF 		bl	memset
+ 116 003e 0023     		movs	r3, #0
+ 117 0040 C7F81432 		str	r3, [r7, #532]
+ 118 0044 0023     		movs	r3, #0
+ 119 0046 C7F81032 		str	r3, [r7, #528]
+ 120 004a 304B     		ldr	r3, .L6
+ 121 004c 0022     		movs	r2, #0
+ 122 004e 1A60     		str	r2, [r3]
+ 123 0050 07F58673 		add	r3, r7, #268
+ 124 0054 2E4A     		ldr	r2, .L6+4
+ 125 0056 1C46     		mov	r4, r3
+ 126 0058 1346     		mov	r3, r2
+ 127 005a 0FCB     		ldm	r3, {r0, r1, r2, r3}
+ 128 005c 07C4     		stmia	r4!, {r0, r1, r2}
+ 129 005e 2380     		strh	r3, [r4]	@ movhi
+ 130 0060 07F58673 		add	r3, r7, #268
+ 131 0064 0021     		movs	r1, #0
+ 132 0066 1846     		mov	r0, r3
+ 133 0068 FFF7FEFF 		bl	access
+ 134 006c 0346     		mov	r3, r0
+ 135 006e B3F1FF3F 		cmp	r3, #-1
+ 136 0072 46D0     		beq	.L5
+ 137 0074 07F58673 		add	r3, r7, #268
+ 138 0078 264A     		ldr	r2, .L6+8
+ 139 007a 2749     		ldr	r1, .L6+12
+ 140 007c 1846     		mov	r0, r3
+ 141 007e FFF7FEFF 		bl	IniGetProfileInt
+ 142 0082 0346     		mov	r3, r0
+ 143 0084 B3F1FF3F 		cmp	r3, #-1
+ 144 0088 3BD0     		beq	.L5
+ 145 008a 07F10803 		add	r3, r7, #8
+ 146 008e 07F58670 		add	r0, r7, #268
+ 147 0092 224A     		ldr	r2, .L6+16
+ 148 0094 2049     		ldr	r1, .L6+12
+ 149 0096 FFF7FEFF 		bl	IniGetProfileStr
+ 150 009a 07F50673 		add	r3, r7, #536
+ 151 009e A3F50573 		sub	r3, r3, #532
+ 152 00a2 07F10802 		add	r2, r7, #8
+ 153 00a6 07F10800 		add	r0, r7, #8
+ 154 00aa 1B68     		ldr	r3, [r3]
+ 155 00ac 1C49     		ldr	r1, .L6+20
+ 156 00ae FFF7FEFF 		bl	sprintf
+ 157 00b2 07F58673 		add	r3, r7, #268
+ 158 00b6 1B4A     		ldr	r2, .L6+24
+ 159 00b8 1749     		ldr	r1, .L6+12
+ 160 00ba 1846     		mov	r0, r3
+ 161 00bc FFF7FEFF 		bl	IniGetProfileInt
+ 162 00c0 C7F81402 		str	r0, [r7, #532]
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s 			page 4
+
+
+ 163 00c4 07F58673 		add	r3, r7, #268
+ 164 00c8 174A     		ldr	r2, .L6+28
+ 165 00ca 1349     		ldr	r1, .L6+12
+ 166 00cc 1846     		mov	r0, r3
+ 167 00ce FFF7FEFF 		bl	IniGetProfileInt
+ 168 00d2 0346     		mov	r3, r0
+ 169 00d4 592B     		cmp	r3, #89
+ 170 00d6 08DC     		bgt	.L3
+ 171 00d8 07F58673 		add	r3, r7, #268
+ 172 00dc 124A     		ldr	r2, .L6+28
+ 173 00de 0E49     		ldr	r1, .L6+12
+ 174 00e0 1846     		mov	r0, r3
+ 175 00e2 FFF7FEFF 		bl	IniGetProfileInt
+ 176 00e6 0346     		mov	r3, r0
+ 177 00e8 00E0     		b	.L4
+ 178              	.L3:
+ 179 00ea 5A23     		movs	r3, #90
+ 180              	.L4:
+ 181 00ec C7F81032 		str	r3, [r7, #528]
+ 182 00f0 07F10803 		add	r3, r7, #8
+ 183 00f4 D7F81022 		ldr	r2, [r7, #528]
+ 184 00f8 D7F81412 		ldr	r1, [r7, #532]
+ 185 00fc 1846     		mov	r0, r3
+ 186 00fe FFF7FEFF 		bl	Open
+ 187              	.L5:
+ 188 0102 00BF     		nop
+ 189 0104 07F50777 		add	r7, r7, #540
+ 190 0108 BD46     		mov	sp, r7
+ 191              		@ sp needed
+ 192 010a 90BD     		pop	{r4, r7, pc}
+ 193              	.L7:
+ 194              		.align	2
+ 195              	.L6:
+ 196 010c 00000000 		.word	g_log_enable
+ 197 0110 00000000 		.word	.LC0
+ 198 0114 10000000 		.word	.LC1
+ 199 0118 1C000000 		.word	.LC2
+ 200 011c 28000000 		.word	.LC3
+ 201 0120 3C000000 		.word	.LC4
+ 202 0124 44000000 		.word	.LC5
+ 203 0128 58000000 		.word	.LC6
+ 205              		.section	.rodata
+ 206 006b 00       		.align	2
+ 207              	.LC7:
+ 208 006c 25735C25 		.ascii	"%s\\%04d%02d%02d.log\000"
+ 208      30346425 
+ 208      30326425 
+ 208      3032642E 
+ 208      6C6F6700 
+ 209              		.align	2
+ 210              	.LC8:
+ 211 0080 612B00   		.ascii	"a+\000"
+ 212              		.section	.text.Open,"ax",%progbits
+ 213              		.align	1
+ 214              		.global	Open
+ 215              		.syntax unified
+ 216              		.thumb
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s 			page 5
+
+
+ 217              		.thumb_func
+ 219              	Open:
+ 220              		@ args = 0, pretend = 0, frame = 840
+ 221              		@ frame_needed = 1, uses_anonymous_args = 0
+ 222 0000 80B5     		push	{r7, lr}
+ 223 0002 ADF5547D 		sub	sp, sp, #848
+ 224 0006 02AF     		add	r7, sp, #8
+ 225 0008 07F55273 		add	r3, r7, #840
+ 226 000c A3F54F73 		sub	r3, r3, #828
+ 227 0010 1860     		str	r0, [r3]
+ 228 0012 07F55273 		add	r3, r7, #840
+ 229 0016 A3F55073 		sub	r3, r3, #832
+ 230 001a 1960     		str	r1, [r3]
+ 231 001c 07F55273 		add	r3, r7, #840
+ 232 0020 A3F55173 		sub	r3, r3, #836
+ 233 0024 1A60     		str	r2, [r3]
+ 234 0026 07F55273 		add	r3, r7, #840
+ 235 002a A3F58A73 		sub	r3, r3, #276
+ 236 002e 1846     		mov	r0, r3
+ 237 0030 4FF48273 		mov	r3, #260
+ 238 0034 1A46     		mov	r2, r3
+ 239 0036 0021     		movs	r1, #0
+ 240 0038 FFF7FEFF 		bl	memset
+ 241 003c 0023     		movs	r3, #0
+ 242 003e C7F84433 		str	r3, [r7, #836]
+ 243 0042 0023     		movs	r3, #0
+ 244 0044 C7F84033 		str	r3, [r7, #832]
+ 245 0048 07F55273 		add	r3, r7, #840
+ 246 004c A3F50D73 		sub	r3, r3, #564
+ 247 0050 1846     		mov	r0, r3
+ 248 0052 4FF48273 		mov	r3, #260
+ 249 0056 1A46     		mov	r2, r3
+ 250 0058 0021     		movs	r1, #0
+ 251 005a FFF7FEFF 		bl	memset
+ 252 005e 07F55273 		add	r3, r7, #840
+ 253 0062 A3F54F73 		sub	r3, r3, #828
+ 254 0066 1B68     		ldr	r3, [r3]
+ 255 0068 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 256 006a 002B     		cmp	r3, #0
+ 257 006c 73D0     		beq	.L9
+ 258 006e 07F55273 		add	r3, r7, #840
+ 259 0072 A3F54E73 		sub	r3, r3, #824
+ 260 0076 1846     		mov	r0, r3
+ 261 0078 4FF48273 		mov	r3, #260
+ 262 007c 1A46     		mov	r2, r3
+ 263 007e 0021     		movs	r1, #0
+ 264 0080 FFF7FEFF 		bl	memset
+ 265 0084 07F55273 		add	r3, r7, #840
+ 266 0088 A3F54F73 		sub	r3, r3, #828
+ 267 008c 07F11002 		add	r2, r7, #16
+ 268 0090 1968     		ldr	r1, [r3]
+ 269 0092 1046     		mov	r0, r2
+ 270 0094 FFF7FEFF 		bl	strcpy
+ 271 0098 C7F83C03 		str	r0, [r7, #828]
+ 272 009c D7F83C03 		ldr	r0, [r7, #828]
+ 273 00a0 FFF7FEFF 		bl	AddBackslashEnd
+ 274 00a4 07F50D73 		add	r3, r7, #564
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s 			page 6
+
+
+ 275 00a8 D7F83C13 		ldr	r1, [r7, #828]
+ 276 00ac 1846     		mov	r0, r3
+ 277 00ae FFF7FEFF 		bl	strcpy
+ 278 00b2 0023     		movs	r3, #0
+ 279 00b4 C7F84433 		str	r3, [r7, #836]
+ 280 00b8 3BE0     		b	.L10
+ 281              	.L14:
+ 282 00ba 07F55273 		add	r3, r7, #840
+ 283 00be A3F58A72 		sub	r2, r3, #276
+ 284 00c2 D7F84433 		ldr	r3, [r7, #836]
+ 285 00c6 1344     		add	r3, r3, r2
+ 286 00c8 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 287 00ca 5C2B     		cmp	r3, #92
+ 288 00cc 09D0     		beq	.L11
+ 289 00ce 07F55273 		add	r3, r7, #840
+ 290 00d2 A3F58A72 		sub	r2, r3, #276
+ 291 00d6 D7F84433 		ldr	r3, [r7, #836]
+ 292 00da 1344     		add	r3, r3, r2
+ 293 00dc 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 294 00de 2F2B     		cmp	r3, #47
+ 295 00e0 22D1     		bne	.L12
+ 296              	.L11:
+ 297 00e2 07F55273 		add	r3, r7, #840
+ 298 00e6 A3F58A72 		sub	r2, r3, #276
+ 299 00ea D7F84433 		ldr	r3, [r7, #836]
+ 300 00ee 1344     		add	r3, r3, r2
+ 301 00f0 0022     		movs	r2, #0
+ 302 00f2 1A70     		strb	r2, [r3]
+ 303 00f4 07F50D73 		add	r3, r7, #564
+ 304 00f8 0021     		movs	r1, #0
+ 305 00fa 1846     		mov	r0, r3
+ 306 00fc FFF7FEFF 		bl	access
+ 307 0100 0346     		mov	r3, r0
+ 308 0102 B3F1FF3F 		cmp	r3, #-1
+ 309 0106 06D1     		bne	.L13
+ 310 0108 07F50D73 		add	r3, r7, #564
+ 311 010c 40F2ED11 		movw	r1, #493
+ 312 0110 1846     		mov	r0, r3
+ 313 0112 FFF7FEFF 		bl	mkdir
+ 314              	.L13:
+ 315 0116 07F55273 		add	r3, r7, #840
+ 316 011a A3F58A72 		sub	r2, r3, #276
+ 317 011e D7F84433 		ldr	r3, [r7, #836]
+ 318 0122 1344     		add	r3, r3, r2
+ 319 0124 5C22     		movs	r2, #92
+ 320 0126 1A70     		strb	r2, [r3]
+ 321              	.L12:
+ 322 0128 D7F84433 		ldr	r3, [r7, #836]
+ 323 012c 0133     		adds	r3, r3, #1
+ 324 012e C7F84433 		str	r3, [r7, #836]
+ 325              	.L10:
+ 326 0132 07F55273 		add	r3, r7, #840
+ 327 0136 A3F58A72 		sub	r2, r3, #276
+ 328 013a D7F84433 		ldr	r3, [r7, #836]
+ 329 013e 1344     		add	r3, r3, r2
+ 330 0140 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 331 0142 002B     		cmp	r3, #0
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s 			page 7
+
+
+ 332 0144 B9D1     		bne	.L14
+ 333 0146 07F55273 		add	r3, r7, #840
+ 334 014a A3F54F73 		sub	r3, r3, #828
+ 335 014e 1968     		ldr	r1, [r3]
+ 336 0150 3D48     		ldr	r0, .L18
+ 337 0152 FFF7FEFF 		bl	strcpy
+ 338              	.L9:
+ 339 0156 3D4A     		ldr	r2, .L18+4
+ 340 0158 07F55273 		add	r3, r7, #840
+ 341 015c A3F55073 		sub	r3, r3, #832
+ 342 0160 1B68     		ldr	r3, [r3]
+ 343 0162 1360     		str	r3, [r2]
+ 344 0164 3A4A     		ldr	r2, .L18+8
+ 345 0166 07F55273 		add	r3, r7, #840
+ 346 016a A3F55173 		sub	r3, r3, #836
+ 347 016e 1B68     		ldr	r3, [r3]
+ 348 0170 1360     		str	r3, [r2]
+ 349 0172 07F50673 		add	r3, r7, #536
+ 350 0176 1846     		mov	r0, r3
+ 351 0178 FFF7FEFF 		bl	GetTime
+ 352 017c 07F55273 		add	r3, r7, #840
+ 353 0180 A3F59873 		sub	r3, r3, #304
+ 354 0184 1B68     		ldr	r3, [r3]
+ 355 0186 42F21072 		movw	r2, #10000
+ 356 018a 03FB02F2 		mul	r2, r3, r2
+ 357 018e 07F55273 		add	r3, r7, #840
+ 358 0192 A3F59873 		sub	r3, r3, #304
+ 359 0196 5B68     		ldr	r3, [r3, #4]
+ 360 0198 6421     		movs	r1, #100
+ 361 019a 01FB03F3 		mul	r3, r1, r3
+ 362 019e 1A44     		add	r2, r2, r3
+ 363 01a0 07F55273 		add	r3, r7, #840
+ 364 01a4 A3F59873 		sub	r3, r3, #304
+ 365 01a8 9B68     		ldr	r3, [r3, #8]
+ 366 01aa 1344     		add	r3, r3, r2
+ 367 01ac 294A     		ldr	r2, .L18+12
+ 368 01ae 1360     		str	r3, [r2]
+ 369 01b0 07F55273 		add	r3, r7, #840
+ 370 01b4 A3F59873 		sub	r3, r3, #304
+ 371 01b8 DB68     		ldr	r3, [r3, #12]
+ 372 01ba 4FF46162 		mov	r2, #3600
+ 373 01be 02FB03F1 		mul	r1, r2, r3
+ 374 01c2 07F55273 		add	r3, r7, #840
+ 375 01c6 A3F59873 		sub	r3, r3, #304
+ 376 01ca 1A69     		ldr	r2, [r3, #16]
+ 377 01cc 1346     		mov	r3, r2
+ 378 01ce 1B01     		lsls	r3, r3, #4
+ 379 01d0 9B1A     		subs	r3, r3, r2
+ 380 01d2 9B00     		lsls	r3, r3, #2
+ 381 01d4 CA18     		adds	r2, r1, r3
+ 382 01d6 07F55273 		add	r3, r7, #840
+ 383 01da A3F59873 		sub	r3, r3, #304
+ 384 01de 5B69     		ldr	r3, [r3, #20]
+ 385 01e0 1344     		add	r3, r3, r2
+ 386 01e2 C7F83833 		str	r3, [r7, #824]
+ 387 01e6 07F55273 		add	r3, r7, #840
+ 388 01ea A3F59873 		sub	r3, r3, #304
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s 			page 8
+
+
+ 389 01ee 1968     		ldr	r1, [r3]
+ 390 01f0 07F55273 		add	r3, r7, #840
+ 391 01f4 A3F59873 		sub	r3, r3, #304
+ 392 01f8 5B68     		ldr	r3, [r3, #4]
+ 393 01fa 07F55272 		add	r2, r7, #840
+ 394 01fe A2F59872 		sub	r2, r2, #304
+ 395 0202 9268     		ldr	r2, [r2, #8]
+ 396 0204 07F58A70 		add	r0, r7, #276
+ 397 0208 0192     		str	r2, [sp, #4]
+ 398 020a 0093     		str	r3, [sp]
+ 399 020c 0B46     		mov	r3, r1
+ 400 020e 0E4A     		ldr	r2, .L18
+ 401 0210 1149     		ldr	r1, .L18+16
+ 402 0212 FFF7FEFF 		bl	sprintf
+ 403 0216 07F58A73 		add	r3, r7, #276
+ 404 021a 1049     		ldr	r1, .L18+20
+ 405 021c 1846     		mov	r0, r3
+ 406 021e FFF7FEFF 		bl	fopen
+ 407 0222 0346     		mov	r3, r0
+ 408 0224 0E4A     		ldr	r2, .L18+24
+ 409 0226 1360     		str	r3, [r2]
+ 410 0228 0D4B     		ldr	r3, .L18+24
+ 411 022a 1B68     		ldr	r3, [r3]
+ 412 022c 002B     		cmp	r3, #0
+ 413 022e 01D1     		bne	.L15
+ 414 0230 0023     		movs	r3, #0
+ 415 0232 03E0     		b	.L17
+ 416              	.L15:
+ 417 0234 0B4B     		ldr	r3, .L18+28
+ 418 0236 0122     		movs	r2, #1
+ 419 0238 1A60     		str	r2, [r3]
+ 420 023a 0123     		movs	r3, #1
+ 421              	.L17:
+ 422 023c 1846     		mov	r0, r3
+ 423 023e 07F55277 		add	r7, r7, #840
+ 424 0242 BD46     		mov	sp, r7
+ 425              		@ sp needed
+ 426 0244 80BD     		pop	{r7, pc}
+ 427              	.L19:
+ 428 0246 00BF     		.align	2
+ 429              	.L18:
+ 430 0248 00000000 		.word	g_logdir
+ 431 024c 00000000 		.word	g_auto_delete
+ 432 0250 00000000 		.word	g_auto_delete_keep_days
+ 433 0254 00000000 		.word	g_logfile_stamp
+ 434 0258 6C000000 		.word	.LC7
+ 435 025c 80000000 		.word	.LC8
+ 436 0260 00000000 		.word	g_fp
+ 437 0264 00000000 		.word	g_log_enable
+ 439              		.section	.text.Close,"ax",%progbits
+ 440              		.align	1
+ 441              		.global	Close
+ 442              		.syntax unified
+ 443              		.thumb
+ 444              		.thumb_func
+ 446              	Close:
+ 447              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s 			page 9
+
+
+ 448              		@ frame_needed = 1, uses_anonymous_args = 0
+ 449 0000 80B5     		push	{r7, lr}
+ 450 0002 00AF     		add	r7, sp, #0
+ 451 0004 084B     		ldr	r3, .L24
+ 452 0006 1B68     		ldr	r3, [r3]
+ 453 0008 002B     		cmp	r3, #0
+ 454 000a 0BD0     		beq	.L23
+ 455 000c 074B     		ldr	r3, .L24+4
+ 456 000e 1B68     		ldr	r3, [r3]
+ 457 0010 002B     		cmp	r3, #0
+ 458 0012 04D0     		beq	.L22
+ 459 0014 054B     		ldr	r3, .L24+4
+ 460 0016 1B68     		ldr	r3, [r3]
+ 461 0018 1846     		mov	r0, r3
+ 462 001a FFF7FEFF 		bl	fclose
+ 463              	.L22:
+ 464 001e 024B     		ldr	r3, .L24
+ 465 0020 0022     		movs	r2, #0
+ 466 0022 1A60     		str	r2, [r3]
+ 467              	.L23:
+ 468 0024 00BF     		nop
+ 469 0026 80BD     		pop	{r7, pc}
+ 470              	.L25:
+ 471              		.align	2
+ 472              	.L24:
+ 473 0028 00000000 		.word	g_log_enable
+ 474 002c 00000000 		.word	g_logfile
+ 476              		.section	.text.LogInfo,"ax",%progbits
+ 477              		.align	1
+ 478              		.global	LogInfo
+ 479              		.syntax unified
+ 480              		.thumb
+ 481              		.thumb_func
+ 483              	LogInfo:
+ 484              		@ args = 4, pretend = 16, frame = 8
+ 485              		@ frame_needed = 1, uses_anonymous_args = 1
+ 486 0000 0FB4     		push	{r0, r1, r2, r3}
+ 487 0002 80B5     		push	{r7, lr}
+ 488 0004 82B0     		sub	sp, sp, #8
+ 489 0006 00AF     		add	r7, sp, #0
+ 490 0008 094B     		ldr	r3, .L30
+ 491 000a 1B68     		ldr	r3, [r3]
+ 492 000c 002B     		cmp	r3, #0
+ 493 000e 08D0     		beq	.L29
+ 494 0010 07F11403 		add	r3, r7, #20
+ 495 0014 7B60     		str	r3, [r7, #4]
+ 496 0016 7A68     		ldr	r2, [r7, #4]
+ 497 0018 3969     		ldr	r1, [r7, #16]
+ 498 001a 0020     		movs	r0, #0
+ 499 001c FFF7FEFF 		bl	Logv
+ 500 0020 00E0     		b	.L26
+ 501              	.L29:
+ 502 0022 00BF     		nop
+ 503              	.L26:
+ 504 0024 0837     		adds	r7, r7, #8
+ 505 0026 BD46     		mov	sp, r7
+ 506              		@ sp needed
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s 			page 10
+
+
+ 507 0028 BDE88040 		pop	{r7, lr}
+ 508 002c 04B0     		add	sp, sp, #16
+ 509 002e 7047     		bx	lr
+ 510              	.L31:
+ 511              		.align	2
+ 512              	.L30:
+ 513 0030 00000000 		.word	g_log_enable
+ 515              		.section	.text.LogError,"ax",%progbits
+ 516              		.align	1
+ 517              		.global	LogError
+ 518              		.syntax unified
+ 519              		.thumb
+ 520              		.thumb_func
+ 522              	LogError:
+ 523              		@ args = 4, pretend = 16, frame = 8
+ 524              		@ frame_needed = 1, uses_anonymous_args = 1
+ 525 0000 0FB4     		push	{r0, r1, r2, r3}
+ 526 0002 80B5     		push	{r7, lr}
+ 527 0004 82B0     		sub	sp, sp, #8
+ 528 0006 00AF     		add	r7, sp, #0
+ 529 0008 094B     		ldr	r3, .L36
+ 530 000a 1B68     		ldr	r3, [r3]
+ 531 000c 002B     		cmp	r3, #0
+ 532 000e 08D0     		beq	.L35
+ 533 0010 07F11403 		add	r3, r7, #20
+ 534 0014 7B60     		str	r3, [r7, #4]
+ 535 0016 7A68     		ldr	r2, [r7, #4]
+ 536 0018 3969     		ldr	r1, [r7, #16]
+ 537 001a 0320     		movs	r0, #3
+ 538 001c FFF7FEFF 		bl	Logv
+ 539 0020 00E0     		b	.L32
+ 540              	.L35:
+ 541 0022 00BF     		nop
+ 542              	.L32:
+ 543 0024 0837     		adds	r7, r7, #8
+ 544 0026 BD46     		mov	sp, r7
+ 545              		@ sp needed
+ 546 0028 BDE88040 		pop	{r7, lr}
+ 547 002c 04B0     		add	sp, sp, #16
+ 548 002e 7047     		bx	lr
+ 549              	.L37:
+ 550              		.align	2
+ 551              	.L36:
+ 552 0030 00000000 		.word	g_log_enable
+ 554              		.section	.text.LogWarn,"ax",%progbits
+ 555              		.align	1
+ 556              		.global	LogWarn
+ 557              		.syntax unified
+ 558              		.thumb
+ 559              		.thumb_func
+ 561              	LogWarn:
+ 562              		@ args = 4, pretend = 16, frame = 8
+ 563              		@ frame_needed = 1, uses_anonymous_args = 1
+ 564 0000 0FB4     		push	{r0, r1, r2, r3}
+ 565 0002 80B5     		push	{r7, lr}
+ 566 0004 82B0     		sub	sp, sp, #8
+ 567 0006 00AF     		add	r7, sp, #0
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s 			page 11
+
+
+ 568 0008 094B     		ldr	r3, .L42
+ 569 000a 1B68     		ldr	r3, [r3]
+ 570 000c 002B     		cmp	r3, #0
+ 571 000e 08D0     		beq	.L41
+ 572 0010 07F11403 		add	r3, r7, #20
+ 573 0014 7B60     		str	r3, [r7, #4]
+ 574 0016 7A68     		ldr	r2, [r7, #4]
+ 575 0018 3969     		ldr	r1, [r7, #16]
+ 576 001a 0120     		movs	r0, #1
+ 577 001c FFF7FEFF 		bl	Logv
+ 578 0020 00E0     		b	.L38
+ 579              	.L41:
+ 580 0022 00BF     		nop
+ 581              	.L38:
+ 582 0024 0837     		adds	r7, r7, #8
+ 583 0026 BD46     		mov	sp, r7
+ 584              		@ sp needed
+ 585 0028 BDE88040 		pop	{r7, lr}
+ 586 002c 04B0     		add	sp, sp, #16
+ 587 002e 7047     		bx	lr
+ 588              	.L43:
+ 589              		.align	2
+ 590              	.L42:
+ 591 0030 00000000 		.word	g_log_enable
+ 593              		.section	.text.LogDebug,"ax",%progbits
+ 594              		.align	1
+ 595              		.global	LogDebug
+ 596              		.syntax unified
+ 597              		.thumb
+ 598              		.thumb_func
+ 600              	LogDebug:
+ 601              		@ args = 4, pretend = 16, frame = 8
+ 602              		@ frame_needed = 1, uses_anonymous_args = 1
+ 603 0000 0FB4     		push	{r0, r1, r2, r3}
+ 604 0002 80B5     		push	{r7, lr}
+ 605 0004 82B0     		sub	sp, sp, #8
+ 606 0006 00AF     		add	r7, sp, #0
+ 607 0008 094B     		ldr	r3, .L48
+ 608 000a 1B68     		ldr	r3, [r3]
+ 609 000c 002B     		cmp	r3, #0
+ 610 000e 08D0     		beq	.L47
+ 611 0010 07F11403 		add	r3, r7, #20
+ 612 0014 7B60     		str	r3, [r7, #4]
+ 613 0016 7A68     		ldr	r2, [r7, #4]
+ 614 0018 3969     		ldr	r1, [r7, #16]
+ 615 001a 0420     		movs	r0, #4
+ 616 001c FFF7FEFF 		bl	Logv
+ 617 0020 00E0     		b	.L44
+ 618              	.L47:
+ 619 0022 00BF     		nop
+ 620              	.L44:
+ 621 0024 0837     		adds	r7, r7, #8
+ 622 0026 BD46     		mov	sp, r7
+ 623              		@ sp needed
+ 624 0028 BDE88040 		pop	{r7, lr}
+ 625 002c 04B0     		add	sp, sp, #16
+ 626 002e 7047     		bx	lr
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s 			page 12
+
+
+ 627              	.L49:
+ 628              		.align	2
+ 629              	.L48:
+ 630 0030 00000000 		.word	g_log_enable
+ 632              		.section	.text.LogException,"ax",%progbits
+ 633              		.align	1
+ 634              		.global	LogException
+ 635              		.syntax unified
+ 636              		.thumb
+ 637              		.thumb_func
+ 639              	LogException:
+ 640              		@ args = 4, pretend = 16, frame = 8
+ 641              		@ frame_needed = 1, uses_anonymous_args = 1
+ 642 0000 0FB4     		push	{r0, r1, r2, r3}
+ 643 0002 80B5     		push	{r7, lr}
+ 644 0004 82B0     		sub	sp, sp, #8
+ 645 0006 00AF     		add	r7, sp, #0
+ 646 0008 094B     		ldr	r3, .L54
+ 647 000a 1B68     		ldr	r3, [r3]
+ 648 000c 002B     		cmp	r3, #0
+ 649 000e 08D0     		beq	.L53
+ 650 0010 07F11403 		add	r3, r7, #20
+ 651 0014 7B60     		str	r3, [r7, #4]
+ 652 0016 7A68     		ldr	r2, [r7, #4]
+ 653 0018 3969     		ldr	r1, [r7, #16]
+ 654 001a 0220     		movs	r0, #2
+ 655 001c FFF7FEFF 		bl	Logv
+ 656 0020 00E0     		b	.L50
+ 657              	.L53:
+ 658 0022 00BF     		nop
+ 659              	.L50:
+ 660 0024 0837     		adds	r7, r7, #8
+ 661 0026 BD46     		mov	sp, r7
+ 662              		@ sp needed
+ 663 0028 BDE88040 		pop	{r7, lr}
+ 664 002c 04B0     		add	sp, sp, #16
+ 665 002e 7047     		bx	lr
+ 666              	.L55:
+ 667              		.align	2
+ 668              	.L54:
+ 669 0030 00000000 		.word	g_log_enable
+ 671              		.section	.rodata
+ 672 0083 00       		.align	2
+ 673              	.LC9:
+ 674 0084 25303464 		.ascii	"%04d-%02d-%02d %02d:%02d:%02d.%03d %s ():\000"
+ 674      2D253032 
+ 674      642D2530 
+ 674      32642025 
+ 674      3032643A 
+ 675 00ae 0000     		.align	2
+ 676              	.LC10:
+ 677 00b0 0A00     		.ascii	"\012\000"
+ 678              		.section	.text.Logv,"ax",%progbits
+ 679              		.align	1
+ 680              		.global	Logv
+ 681              		.syntax unified
+ 682              		.thumb
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s 			page 13
+
+
+ 683              		.thumb_func
+ 685              	Logv:
+ 686              		@ args = 0, pretend = 0, frame = 2368
+ 687              		@ frame_needed = 1, uses_anonymous_args = 0
+ 688 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 689 0002 ADF65C1D 		subw	sp, sp, #2396
+ 690 0006 06AF     		add	r7, sp, #24
+ 691 0008 07F51463 		add	r3, r7, #2368
+ 692 000c A3F62C13 		subw	r3, r3, #2348
+ 693 0010 1860     		str	r0, [r3]
+ 694 0012 07F51463 		add	r3, r7, #2368
+ 695 0016 A3F51363 		sub	r3, r3, #2352
+ 696 001a 1960     		str	r1, [r3]
+ 697 001c 07F51463 		add	r3, r7, #2368
+ 698 0020 A3F63413 		subw	r3, r3, #2356
+ 699 0024 1A60     		str	r2, [r3]
+ 700 0026 07F61C13 		addw	r3, r7, #2332
+ 701 002a 1846     		mov	r0, r3
+ 702 002c FFF7FEFF 		bl	GetTime
+ 703 0030 D7F81C39 		ldr	r3, [r7, #2332]
+ 704 0034 42F21072 		movw	r2, #10000
+ 705 0038 03FB02F2 		mul	r2, r3, r2
+ 706 003c D7F82039 		ldr	r3, [r7, #2336]
+ 707 0040 6421     		movs	r1, #100
+ 708 0042 01FB03F3 		mul	r3, r1, r3
+ 709 0046 1A44     		add	r2, r2, r3
+ 710 0048 D7F82439 		ldr	r3, [r7, #2340]
+ 711 004c 1344     		add	r3, r3, r2
+ 712 004e C7F83C39 		str	r3, [r7, #2364]
+ 713 0052 D7F82839 		ldr	r3, [r7, #2344]
+ 714 0056 4FF46162 		mov	r2, #3600
+ 715 005a 02FB03F1 		mul	r1, r2, r3
+ 716 005e D7F82C29 		ldr	r2, [r7, #2348]
+ 717 0062 1346     		mov	r3, r2
+ 718 0064 1B01     		lsls	r3, r3, #4
+ 719 0066 9B1A     		subs	r3, r3, r2
+ 720 0068 9B00     		lsls	r3, r3, #2
+ 721 006a CA18     		adds	r2, r1, r3
+ 722 006c D7F83039 		ldr	r3, [r7, #2352]
+ 723 0070 1344     		add	r3, r3, r2
+ 724 0072 C7F83839 		str	r3, [r7, #2360]
+ 725 0076 D7F83819 		ldr	r1, [r7, #2360]
+ 726 007a D7F83C09 		ldr	r0, [r7, #2364]
+ 727 007e FFF7FEFF 		bl	CheckChangeFile
+ 728 0082 294B     		ldr	r3, .L60
+ 729 0084 1B68     		ldr	r3, [r3]
+ 730 0086 002B     		cmp	r3, #0
+ 731 0088 48D0     		beq	.L59
+ 732 008a 07F51463 		add	r3, r7, #2368
+ 733 008e A3F63413 		subw	r3, r3, #2356
+ 734 0092 07F51462 		add	r2, r7, #2368
+ 735 0096 A2F51362 		sub	r2, r2, #2352
+ 736 009a 07F58E70 		add	r0, r7, #284
+ 737 009e 1B68     		ldr	r3, [r3]
+ 738 00a0 1268     		ldr	r2, [r2]
+ 739 00a2 4FF40061 		mov	r1, #2048
+ 740 00a6 FFF7FEFF 		bl	vsnprintf
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s 			page 14
+
+
+ 741 00aa D7F81C39 		ldr	r3, [r7, #2332]
+ 742 00ae BB60     		str	r3, [r7, #8]
+ 743 00b0 D7F82019 		ldr	r1, [r7, #2336]
+ 744 00b4 7960     		str	r1, [r7, #4]
+ 745 00b6 D7F82439 		ldr	r3, [r7, #2340]
+ 746 00ba D7F82829 		ldr	r2, [r7, #2344]
+ 747 00be D7F82C19 		ldr	r1, [r7, #2348]
+ 748 00c2 D7F83009 		ldr	r0, [r7, #2352]
+ 749 00c6 D7F83449 		ldr	r4, [r7, #2356]
+ 750 00ca 184E     		ldr	r6, .L60+4
+ 751 00cc 07F51465 		add	r5, r7, #2368
+ 752 00d0 A5F62C15 		subw	r5, r5, #2348
+ 753 00d4 2D68     		ldr	r5, [r5]
+ 754 00d6 56F82550 		ldr	r5, [r6, r5, lsl #2]
+ 755 00da 07F11C06 		add	r6, r7, #28
+ 756 00de 0595     		str	r5, [sp, #20]
+ 757 00e0 0494     		str	r4, [sp, #16]
+ 758 00e2 0390     		str	r0, [sp, #12]
+ 759 00e4 0291     		str	r1, [sp, #8]
+ 760 00e6 0192     		str	r2, [sp, #4]
+ 761 00e8 0093     		str	r3, [sp]
+ 762 00ea 7B68     		ldr	r3, [r7, #4]
+ 763 00ec BA68     		ldr	r2, [r7, #8]
+ 764 00ee 1049     		ldr	r1, .L60+8
+ 765 00f0 3046     		mov	r0, r6
+ 766 00f2 FFF7FEFF 		bl	sprintf
+ 767 00f6 07F11C03 		add	r3, r7, #28
+ 768 00fa 1846     		mov	r0, r3
+ 769 00fc FFF7FEFF 		bl	WriteRecord
+ 770 0100 07F58E73 		add	r3, r7, #284
+ 771 0104 1846     		mov	r0, r3
+ 772 0106 FFF7FEFF 		bl	WriteRecord
+ 773 010a 0A48     		ldr	r0, .L60+12
+ 774 010c FFF7FEFF 		bl	WriteRecord
+ 775 0110 054B     		ldr	r3, .L60
+ 776 0112 1B68     		ldr	r3, [r3]
+ 777 0114 1846     		mov	r0, r3
+ 778 0116 FFF7FEFF 		bl	fflush
+ 779 011a 00E0     		b	.L56
+ 780              	.L59:
+ 781 011c 00BF     		nop
+ 782              	.L56:
+ 783 011e 07F64417 		addw	r7, r7, #2372
+ 784 0122 BD46     		mov	sp, r7
+ 785              		@ sp needed
+ 786 0124 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 787              	.L61:
+ 788 0126 00BF     		.align	2
+ 789              	.L60:
+ 790 0128 00000000 		.word	g_fp
+ 791 012c 00000000 		.word	szType.0
+ 792 0130 84000000 		.word	.LC9
+ 793 0134 B0000000 		.word	.LC10
+ 795              		.section	.text.CheckChangeFile,"ax",%progbits
+ 796              		.align	1
+ 797              		.global	CheckChangeFile
+ 798              		.syntax unified
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s 			page 15
+
+
+ 799              		.thumb
+ 800              		.thumb_func
+ 802              	CheckChangeFile:
+ 803              		@ args = 0, pretend = 0, frame = 296
+ 804              		@ frame_needed = 1, uses_anonymous_args = 0
+ 805 0000 80B5     		push	{r7, lr}
+ 806 0002 CCB0     		sub	sp, sp, #304
+ 807 0004 02AF     		add	r7, sp, #8
+ 808 0006 07F59473 		add	r3, r7, #296
+ 809 000a A3F59273 		sub	r3, r3, #292
+ 810 000e 1860     		str	r0, [r3]
+ 811 0010 07F59473 		add	r3, r7, #296
+ 812 0014 A3F59473 		sub	r3, r3, #296
+ 813 0018 1960     		str	r1, [r3]
+ 814 001a 204B     		ldr	r3, .L66
+ 815 001c 1B68     		ldr	r3, [r3]
+ 816 001e 07F59472 		add	r2, r7, #296
+ 817 0022 A2F59272 		sub	r2, r2, #292
+ 818 0026 1268     		ldr	r2, [r2]
+ 819 0028 9A42     		cmp	r2, r3
+ 820 002a 31D0     		beq	.L65
+ 821 002c 1C4B     		ldr	r3, .L66+4
+ 822 002e 1B68     		ldr	r3, [r3]
+ 823 0030 1846     		mov	r0, r3
+ 824 0032 FFF7FEFF 		bl	fclose
+ 825 0036 1A4B     		ldr	r3, .L66+4
+ 826 0038 0022     		movs	r2, #0
+ 827 003a 1A60     		str	r2, [r3]
+ 828 003c 07F58673 		add	r3, r7, #268
+ 829 0040 1846     		mov	r0, r3
+ 830 0042 FFF7FEFF 		bl	GetTime
+ 831 0046 154A     		ldr	r2, .L66
+ 832 0048 07F59473 		add	r3, r7, #296
+ 833 004c A3F59273 		sub	r3, r3, #292
+ 834 0050 1B68     		ldr	r3, [r3]
+ 835 0052 1360     		str	r3, [r2]
+ 836 0054 D7F80C11 		ldr	r1, [r7, #268]
+ 837 0058 D7F81031 		ldr	r3, [r7, #272]
+ 838 005c D7F81421 		ldr	r2, [r7, #276]
+ 839 0060 07F10800 		add	r0, r7, #8
+ 840 0064 0192     		str	r2, [sp, #4]
+ 841 0066 0093     		str	r3, [sp]
+ 842 0068 0B46     		mov	r3, r1
+ 843 006a 0E4A     		ldr	r2, .L66+8
+ 844 006c 0E49     		ldr	r1, .L66+12
+ 845 006e FFF7FEFF 		bl	sprintf
+ 846 0072 07F10803 		add	r3, r7, #8
+ 847 0076 0D49     		ldr	r1, .L66+16
+ 848 0078 1846     		mov	r0, r3
+ 849 007a FFF7FEFF 		bl	fopen
+ 850 007e 0346     		mov	r3, r0
+ 851 0080 074A     		ldr	r2, .L66+4
+ 852 0082 1360     		str	r3, [r2]
+ 853 0084 0A4B     		ldr	r3, .L66+20
+ 854 0086 1B68     		ldr	r3, [r3]
+ 855 0088 002B     		cmp	r3, #0
+ 856 008a 01D0     		beq	.L65
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s 			page 16
+
+
+ 857 008c FFF7FEFF 		bl	CleanFiles
+ 858              	.L65:
+ 859 0090 00BF     		nop
+ 860 0092 07F59477 		add	r7, r7, #296
+ 861 0096 BD46     		mov	sp, r7
+ 862              		@ sp needed
+ 863 0098 80BD     		pop	{r7, pc}
+ 864              	.L67:
+ 865 009a 00BF     		.align	2
+ 866              	.L66:
+ 867 009c 00000000 		.word	g_logfile_stamp
+ 868 00a0 00000000 		.word	g_fp
+ 869 00a4 00000000 		.word	g_logdir
+ 870 00a8 6C000000 		.word	.LC7
+ 871 00ac 80000000 		.word	.LC8
+ 872 00b0 00000000 		.word	g_auto_delete
+ 874              		.section	.text.WriteRecord,"ax",%progbits
+ 875              		.align	1
+ 876              		.global	WriteRecord
+ 877              		.syntax unified
+ 878              		.thumb
+ 879              		.thumb_func
+ 881              	WriteRecord:
+ 882              		@ args = 0, pretend = 0, frame = 24
+ 883              		@ frame_needed = 1, uses_anonymous_args = 0
+ 884 0000 80B5     		push	{r7, lr}
+ 885 0002 86B0     		sub	sp, sp, #24
+ 886 0004 00AF     		add	r7, sp, #0
+ 887 0006 7860     		str	r0, [r7, #4]
+ 888 0008 0023     		movs	r3, #0
+ 889 000a 7B61     		str	r3, [r7, #20]
+ 890 000c 7B68     		ldr	r3, [r7, #4]
+ 891 000e 002B     		cmp	r3, #0
+ 892 0010 04D0     		beq	.L69
+ 893 0012 7868     		ldr	r0, [r7, #4]
+ 894 0014 FFF7FEFF 		bl	strlen
+ 895 0018 0346     		mov	r3, r0
+ 896 001a 00E0     		b	.L70
+ 897              	.L69:
+ 898 001c 0023     		movs	r3, #0
+ 899              	.L70:
+ 900 001e 3B61     		str	r3, [r7, #16]
+ 901 0020 3B69     		ldr	r3, [r7, #16]
+ 902 0022 002B     		cmp	r3, #0
+ 903 0024 0AD0     		beq	.L72
+ 904 0026 0023     		movs	r3, #0
+ 905 0028 FB60     		str	r3, [r7, #12]
+ 906 002a 3969     		ldr	r1, [r7, #16]
+ 907 002c 054B     		ldr	r3, .L73
+ 908 002e 1B68     		ldr	r3, [r3]
+ 909 0030 0122     		movs	r2, #1
+ 910 0032 7868     		ldr	r0, [r7, #4]
+ 911 0034 FFF7FEFF 		bl	fwrite
+ 912 0038 0346     		mov	r3, r0
+ 913 003a 7B61     		str	r3, [r7, #20]
+ 914              	.L72:
+ 915 003c 00BF     		nop
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s 			page 17
+
+
+ 916 003e 1837     		adds	r7, r7, #24
+ 917 0040 BD46     		mov	sp, r7
+ 918              		@ sp needed
+ 919 0042 80BD     		pop	{r7, pc}
+ 920              	.L74:
+ 921              		.align	2
+ 922              	.L73:
+ 923 0044 00000000 		.word	g_fp
+ 925              		.section	.text.rdn,"ax",%progbits
+ 926              		.align	1
+ 927              		.syntax unified
+ 928              		.thumb
+ 929              		.thumb_func
+ 931              	rdn:
+ 932              		@ args = 0, pretend = 0, frame = 16
+ 933              		@ frame_needed = 1, uses_anonymous_args = 0
+ 934              		@ link register save eliminated.
+ 935 0000 80B4     		push	{r7}
+ 936 0002 85B0     		sub	sp, sp, #20
+ 937 0004 00AF     		add	r7, sp, #0
+ 938 0006 F860     		str	r0, [r7, #12]
+ 939 0008 B960     		str	r1, [r7, #8]
+ 940 000a 7A60     		str	r2, [r7, #4]
+ 941 000c BB68     		ldr	r3, [r7, #8]
+ 942 000e 022B     		cmp	r3, #2
+ 943 0010 05DC     		bgt	.L76
+ 944 0012 FB68     		ldr	r3, [r7, #12]
+ 945 0014 013B     		subs	r3, r3, #1
+ 946 0016 FB60     		str	r3, [r7, #12]
+ 947 0018 BB68     		ldr	r3, [r7, #8]
+ 948 001a 0C33     		adds	r3, r3, #12
+ 949 001c BB60     		str	r3, [r7, #8]
+ 950              	.L76:
+ 951 001e FB68     		ldr	r3, [r7, #12]
+ 952 0020 40F26D12 		movw	r2, #365
+ 953 0024 03FB02F2 		mul	r2, r3, r2
+ 954 0028 FB68     		ldr	r3, [r7, #12]
+ 955 002a 002B     		cmp	r3, #0
+ 956 002c 00DA     		bge	.L77
+ 957 002e 0333     		adds	r3, r3, #3
+ 958              	.L77:
+ 959 0030 9B10     		asrs	r3, r3, #2
+ 960 0032 1A44     		add	r2, r2, r3
+ 961 0034 FB68     		ldr	r3, [r7, #12]
+ 962 0036 1349     		ldr	r1, .L79
+ 963 0038 81FB0301 		smull	r0, r1, r1, r3
+ 964 003c 4911     		asrs	r1, r1, #5
+ 965 003e DB17     		asrs	r3, r3, #31
+ 966 0040 5B1A     		subs	r3, r3, r1
+ 967 0042 1A44     		add	r2, r2, r3
+ 968 0044 FB68     		ldr	r3, [r7, #12]
+ 969 0046 0F49     		ldr	r1, .L79
+ 970 0048 81FB0301 		smull	r0, r1, r1, r3
+ 971 004c C911     		asrs	r1, r1, #7
+ 972 004e DB17     		asrs	r3, r3, #31
+ 973 0050 CB1A     		subs	r3, r1, r3
+ 974 0052 D118     		adds	r1, r2, r3
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s 			page 18
+
+
+ 975 0054 BA68     		ldr	r2, [r7, #8]
+ 976 0056 1346     		mov	r3, r2
+ 977 0058 DB00     		lsls	r3, r3, #3
+ 978 005a 1344     		add	r3, r3, r2
+ 979 005c 1A01     		lsls	r2, r3, #4
+ 980 005e 1344     		add	r3, r3, r2
+ 981 0060 A3F2C913 		subw	r3, r3, #457
+ 982 0064 084A     		ldr	r2, .L79+4
+ 983 0066 82FB0302 		smull	r0, r2, r2, r3
+ 984 006a 5210     		asrs	r2, r2, #1
+ 985 006c DB17     		asrs	r3, r3, #31
+ 986 006e D31A     		subs	r3, r2, r3
+ 987 0070 CA18     		adds	r2, r1, r3
+ 988 0072 7B68     		ldr	r3, [r7, #4]
+ 989 0074 1344     		add	r3, r3, r2
+ 990 0076 A3F59973 		sub	r3, r3, #306
+ 991 007a 1846     		mov	r0, r3
+ 992 007c 1437     		adds	r7, r7, #20
+ 993 007e BD46     		mov	sp, r7
+ 994              		@ sp needed
+ 995 0080 80BC     		pop	{r7}
+ 996 0082 7047     		bx	lr
+ 997              	.L80:
+ 998              		.align	2
+ 999              	.L79:
+ 1000 0084 1F85EB51 		.word	1374389535
+ 1001 0088 67666666 		.word	1717986919
+ 1003              		.section	.text.get_date_distance,"ax",%progbits
+ 1004              		.align	1
+ 1005              		.syntax unified
+ 1006              		.thumb
+ 1007              		.thumb_func
+ 1009              	get_date_distance:
+ 1010              		@ args = 8, pretend = 0, frame = 16
+ 1011              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1012 0000 90B5     		push	{r4, r7, lr}
+ 1013 0002 85B0     		sub	sp, sp, #20
+ 1014 0004 00AF     		add	r7, sp, #0
+ 1015 0006 F860     		str	r0, [r7, #12]
+ 1016 0008 B960     		str	r1, [r7, #8]
+ 1017 000a 7A60     		str	r2, [r7, #4]
+ 1018 000c 3B60     		str	r3, [r7]
+ 1019 000e 7A68     		ldr	r2, [r7, #4]
+ 1020 0010 B968     		ldr	r1, [r7, #8]
+ 1021 0012 F868     		ldr	r0, [r7, #12]
+ 1022 0014 FFF7FEFF 		bl	rdn
+ 1023 0018 0446     		mov	r4, r0
+ 1024 001a 7A6A     		ldr	r2, [r7, #36]
+ 1025 001c 396A     		ldr	r1, [r7, #32]
+ 1026 001e 3868     		ldr	r0, [r7]
+ 1027 0020 FFF7FEFF 		bl	rdn
+ 1028 0024 0346     		mov	r3, r0
+ 1029 0026 E31A     		subs	r3, r4, r3
+ 1030 0028 1846     		mov	r0, r3
+ 1031 002a 1437     		adds	r7, r7, #20
+ 1032 002c BD46     		mov	sp, r7
+ 1033              		@ sp needed
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s 			page 19
+
+
+ 1034 002e 90BD     		pop	{r4, r7, pc}
+ 1036              		.section	.rodata
+ 1037 00b2 0000     		.align	2
+ 1038              	.LC11:
+ 1039 00b4 25735C2A 		.ascii	"%s\\*.log\000"
+ 1039      2E6C6F67 
+ 1039      00
+ 1040 00bd 000000   		.align	2
+ 1041              	.LC12:
+ 1042 00c0 25303464 		.ascii	"%04d%02d%02d\000"
+ 1042      25303264 
+ 1042      25303264 
+ 1042      00
+ 1043 00cd 000000   		.align	2
+ 1044              	.LC13:
+ 1045 00d0 5C00     		.ascii	"\\\000"
+ 1046 00d2 0000     		.align	2
+ 1047              	.LC14:
+ 1048 00d4 2E6C6F67 		.ascii	".log\000"
+ 1048      00
+ 1049              		.section	.text.CleanFiles,"ax",%progbits
+ 1050              		.align	1
+ 1051              		.global	CleanFiles
+ 1052              		.syntax unified
+ 1053              		.thumb
+ 1054              		.thumb_func
+ 1056              	CleanFiles:
+ 1057              		@ args = 0, pretend = 0, frame = 616
+ 1058              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1059 0000 80B5     		push	{r7, lr}
+ 1060 0002 ADF51C7D 		sub	sp, sp, #624
+ 1061 0006 02AF     		add	r7, sp, #8
+ 1062 0008 07F51A73 		add	r3, r7, #616
+ 1063 000c A3F58A73 		sub	r3, r3, #276
+ 1064 0010 1846     		mov	r0, r3
+ 1065 0012 4FF48273 		mov	r3, #260
+ 1066 0016 1A46     		mov	r2, r3
+ 1067 0018 0021     		movs	r1, #0
+ 1068 001a FFF7FEFF 		bl	memset
+ 1069 001e 0023     		movs	r3, #0
+ 1070 0020 C7F86432 		str	r3, [r7, #612]
+ 1071 0024 07F51A73 		add	r3, r7, #616
+ 1072 0028 A3F5AA73 		sub	r3, r3, #340
+ 1073 002c 1846     		mov	r0, r3
+ 1074 002e 4023     		movs	r3, #64
+ 1075 0030 1A46     		mov	r2, r3
+ 1076 0032 0021     		movs	r1, #0
+ 1077 0034 FFF7FEFF 		bl	memset
+ 1078 0038 07F5AA73 		add	r3, r7, #340
+ 1079 003c 524A     		ldr	r2, .L87
+ 1080 003e 5349     		ldr	r1, .L87+4
+ 1081 0040 1846     		mov	r0, r3
+ 1082 0042 FFF7FEFF 		bl	sprintf
+ 1083 0046 0023     		movs	r3, #0
+ 1084 0048 C7F86432 		str	r3, [r7, #612]
+ 1085 004c 90E0     		b	.L84
+ 1086              	.L86:
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s 			page 20
+
+
+ 1087 004e 07F58A73 		add	r3, r7, #276
+ 1088 0052 1946     		mov	r1, r3
+ 1089 0054 D7F86402 		ldr	r0, [r7, #612]
+ 1090 0058 FFF7FEFF 		bl	SubTime
+ 1091 005c 07F58671 		add	r1, r7, #268
+ 1092 0060 07F58872 		add	r2, r7, #272
+ 1093 0064 07F58A70 		add	r0, r7, #276
+ 1094 0068 07F58473 		add	r3, r7, #264
+ 1095 006c 0093     		str	r3, [sp]
+ 1096 006e 0B46     		mov	r3, r1
+ 1097 0070 4749     		ldr	r1, .L87+8
+ 1098 0072 FFF7FEFF 		bl	sscanf
+ 1099 0076 0346     		mov	r3, r0
+ 1100 0078 032B     		cmp	r3, #3
+ 1101 007a 74D1     		bne	.L85
+ 1102 007c 454B     		ldr	r3, .L87+12
+ 1103 007e 1B68     		ldr	r3, [r3]
+ 1104 0080 454A     		ldr	r2, .L87+16
+ 1105 0082 82FB0312 		smull	r1, r2, r2, r3
+ 1106 0086 1213     		asrs	r2, r2, #12
+ 1107 0088 DB17     		asrs	r3, r3, #31
+ 1108 008a D31A     		subs	r3, r2, r3
+ 1109 008c C7F86032 		str	r3, [r7, #608]
+ 1110 0090 404B     		ldr	r3, .L87+12
+ 1111 0092 1B68     		ldr	r3, [r3]
+ 1112 0094 414A     		ldr	r2, .L87+20
+ 1113 0096 82FB0312 		smull	r1, r2, r2, r3
+ 1114 009a 5211     		asrs	r2, r2, #5
+ 1115 009c DB17     		asrs	r3, r3, #31
+ 1116 009e D31A     		subs	r3, r2, r3
+ 1117 00a0 3E4A     		ldr	r2, .L87+20
+ 1118 00a2 82FB0312 		smull	r1, r2, r2, r3
+ 1119 00a6 5111     		asrs	r1, r2, #5
+ 1120 00a8 DA17     		asrs	r2, r3, #31
+ 1121 00aa 8A1A     		subs	r2, r1, r2
+ 1122 00ac 6421     		movs	r1, #100
+ 1123 00ae 01FB02F2 		mul	r2, r1, r2
+ 1124 00b2 9B1A     		subs	r3, r3, r2
+ 1125 00b4 C7F85C32 		str	r3, [r7, #604]
+ 1126 00b8 364B     		ldr	r3, .L87+12
+ 1127 00ba 1B68     		ldr	r3, [r3]
+ 1128 00bc 374A     		ldr	r2, .L87+20
+ 1129 00be 82FB0312 		smull	r1, r2, r2, r3
+ 1130 00c2 5111     		asrs	r1, r2, #5
+ 1131 00c4 DA17     		asrs	r2, r3, #31
+ 1132 00c6 8A1A     		subs	r2, r1, r2
+ 1133 00c8 6421     		movs	r1, #100
+ 1134 00ca 01FB02F2 		mul	r2, r1, r2
+ 1135 00ce 9B1A     		subs	r3, r3, r2
+ 1136 00d0 C7F85832 		str	r3, [r7, #600]
+ 1137 00d4 07F51A73 		add	r3, r7, #616
+ 1138 00d8 A3F5AC73 		sub	r3, r3, #344
+ 1139 00dc 1968     		ldr	r1, [r3]
+ 1140 00de 07F51A73 		add	r3, r7, #616
+ 1141 00e2 A3F5AE73 		sub	r3, r3, #348
+ 1142 00e6 1B68     		ldr	r3, [r3]
+ 1143 00e8 07F51A72 		add	r2, r7, #616
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s 			page 21
+
+
+ 1144 00ec A2F5B072 		sub	r2, r2, #352
+ 1145 00f0 1268     		ldr	r2, [r2]
+ 1146 00f2 0192     		str	r2, [sp, #4]
+ 1147 00f4 0093     		str	r3, [sp]
+ 1148 00f6 0B46     		mov	r3, r1
+ 1149 00f8 D7F85822 		ldr	r2, [r7, #600]
+ 1150 00fc D7F85C12 		ldr	r1, [r7, #604]
+ 1151 0100 D7F86002 		ldr	r0, [r7, #608]
+ 1152 0104 FFF7FEFF 		bl	get_date_distance
+ 1153 0108 0246     		mov	r2, r0
+ 1154 010a 254B     		ldr	r3, .L87+24
+ 1155 010c 1B68     		ldr	r3, [r3]
+ 1156 010e 9A42     		cmp	r2, r3
+ 1157 0110 29DD     		ble	.L85
+ 1158 0112 3B1D     		adds	r3, r7, #4
+ 1159 0114 1C49     		ldr	r1, .L87
+ 1160 0116 1846     		mov	r0, r3
+ 1161 0118 FFF7FEFF 		bl	strcpy
+ 1162 011c 3B1D     		adds	r3, r7, #4
+ 1163 011e 1846     		mov	r0, r3
+ 1164 0120 FFF7FEFF 		bl	strlen
+ 1165 0124 0346     		mov	r3, r0
+ 1166 0126 1A46     		mov	r2, r3
+ 1167 0128 3B1D     		adds	r3, r7, #4
+ 1168 012a 1344     		add	r3, r3, r2
+ 1169 012c 1D49     		ldr	r1, .L87+28
+ 1170 012e 1A46     		mov	r2, r3
+ 1171 0130 0B46     		mov	r3, r1
+ 1172 0132 1B88     		ldrh	r3, [r3]	@ unaligned
+ 1173 0134 1380     		strh	r3, [r2]	@ unaligned
+ 1174 0136 07F58A72 		add	r2, r7, #276
+ 1175 013a 3B1D     		adds	r3, r7, #4
+ 1176 013c 1146     		mov	r1, r2
+ 1177 013e 1846     		mov	r0, r3
+ 1178 0140 FFF7FEFF 		bl	strcat
+ 1179 0144 3B1D     		adds	r3, r7, #4
+ 1180 0146 1846     		mov	r0, r3
+ 1181 0148 FFF7FEFF 		bl	strlen
+ 1182 014c 0346     		mov	r3, r0
+ 1183 014e 1A46     		mov	r2, r3
+ 1184 0150 3B1D     		adds	r3, r7, #4
+ 1185 0152 1344     		add	r3, r3, r2
+ 1186 0154 144A     		ldr	r2, .L87+32
+ 1187 0156 1068     		ldr	r0, [r2]
+ 1188 0158 1860     		str	r0, [r3]	@ unaligned
+ 1189 015a 1279     		ldrb	r2, [r2, #4]
+ 1190 015c 1A71     		strb	r2, [r3, #4]
+ 1191 015e 3B1D     		adds	r3, r7, #4
+ 1192 0160 1846     		mov	r0, r3
+ 1193 0162 FFF7FEFF 		bl	remove
+ 1194              	.L85:
+ 1195 0166 D7F86432 		ldr	r3, [r7, #612]
+ 1196 016a 0133     		adds	r3, r3, #1
+ 1197 016c C7F86432 		str	r3, [r7, #612]
+ 1198              	.L84:
+ 1199 0170 D7F86432 		ldr	r3, [r7, #612]
+ 1200 0174 632B     		cmp	r3, #99
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s 			page 22
+
+
+ 1201 0176 7FF76AAF 		ble	.L86
+ 1202 017a 00BF     		nop
+ 1203 017c 00BF     		nop
+ 1204 017e 07F51A77 		add	r7, r7, #616
+ 1205 0182 BD46     		mov	sp, r7
+ 1206              		@ sp needed
+ 1207 0184 80BD     		pop	{r7, pc}
+ 1208              	.L88:
+ 1209 0186 00BF     		.align	2
+ 1210              	.L87:
+ 1211 0188 00000000 		.word	g_logdir
+ 1212 018c B4000000 		.word	.LC11
+ 1213 0190 C0000000 		.word	.LC12
+ 1214 0194 00000000 		.word	g_logfile_stamp
+ 1215 0198 AD8BDB68 		.word	1759218605
+ 1216 019c 1F85EB51 		.word	1374389535
+ 1217 01a0 00000000 		.word	g_auto_delete_keep_days
+ 1218 01a4 D0000000 		.word	.LC13
+ 1219 01a8 D4000000 		.word	.LC14
+ 1221              		.section	.rodata
+ 1222 00d9 000000   		.align	2
+ 1223              	.LC15:
+ 1224 00dc 4D657373 		.ascii	"Message\000"
+ 1224      61676500 
+ 1225              		.align	2
+ 1226              	.LC16:
+ 1227 00e4 5761726E 		.ascii	"Warning\000"
+ 1227      696E6700 
+ 1228              		.align	2
+ 1229              	.LC17:
+ 1230 00ec 45786365 		.ascii	"Exception\000"
+ 1230      7074696F 
+ 1230      6E00
+ 1231 00f6 0000     		.align	2
+ 1232              	.LC18:
+ 1233 00f8 4572726F 		.ascii	"Error  \000"
+ 1233      72202000 
+ 1234              		.align	2
+ 1235              	.LC19:
+ 1236 0100 44656275 		.ascii	"Debug  \000"
+ 1236      67202000 
+ 1237              		.section	.data.szType.0,"aw"
+ 1238              		.align	2
+ 1241              	szType.0:
+ 1242 0000 DC000000 		.word	.LC15
+ 1243 0004 E4000000 		.word	.LC16
+ 1244 0008 EC000000 		.word	.LC17
+ 1245 000c F8000000 		.word	.LC18
+ 1246 0010 00010000 		.word	.LC19
+ 1247              		.ident	"GCC: (Arm GNU Toolchain 13.2.rel1 (Build arm-13.7)) 13.2.1 20231009"
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s 			page 23
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 ZssLog.c
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:20     .bss.g_logdir:00000000 g_logdir
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:17     .bss.g_logdir:00000000 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:27     .bss.g_logfile:00000000 g_logfile
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:24     .bss.g_logfile:00000000 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:34     .bss.g_log_enable:00000000 g_log_enable
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:31     .bss.g_log_enable:00000000 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:41     .bss.g_logfile_stamp:00000000 g_logfile_stamp
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:38     .bss.g_logfile_stamp:00000000 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:48     .bss.g_auto_delete:00000000 g_auto_delete
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:45     .bss.g_auto_delete:00000000 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:55     .bss.g_auto_delete_keep_days:00000000 g_auto_delete_keep_days
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:52     .bss.g_auto_delete_keep_days:00000000 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:62     .bss.g_fp:00000000 g_fp
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:59     .bss.g_fp:00000000 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:65     .rodata:00000000 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:87     .text.ZssLog:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:93     .text.ZssLog:00000000 ZssLog
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:219    .text.Open:00000000 Open
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:196    .text.ZssLog:0000010c $d
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:213    .text.Open:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:430    .text.Open:00000248 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:440    .text.Close:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:446    .text.Close:00000000 Close
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:473    .text.Close:00000028 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:477    .text.LogInfo:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:483    .text.LogInfo:00000000 LogInfo
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:685    .text.Logv:00000000 Logv
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:513    .text.LogInfo:00000030 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:516    .text.LogError:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:522    .text.LogError:00000000 LogError
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:552    .text.LogError:00000030 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:555    .text.LogWarn:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:561    .text.LogWarn:00000000 LogWarn
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:591    .text.LogWarn:00000030 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:594    .text.LogDebug:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:600    .text.LogDebug:00000000 LogDebug
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:630    .text.LogDebug:00000030 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:633    .text.LogException:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:639    .text.LogException:00000000 LogException
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:669    .text.LogException:00000030 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:679    .text.Logv:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:802    .text.CheckChangeFile:00000000 CheckChangeFile
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:881    .text.WriteRecord:00000000 WriteRecord
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:790    .text.Logv:00000128 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:1241   .data.szType.0:00000000 szType.0
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:796    .text.CheckChangeFile:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:1056   .text.CleanFiles:00000000 CleanFiles
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:867    .text.CheckChangeFile:0000009c $d
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:875    .text.WriteRecord:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:923    .text.WriteRecord:00000044 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:926    .text.rdn:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:931    .text.rdn:00000000 rdn
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:1000   .text.rdn:00000084 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:1004   .text.get_date_distance:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:1009   .text.get_date_distance:00000000 get_date_distance
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s 			page 24
+
+
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:1050   .text.CleanFiles:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:1211   .text.CleanFiles:00000188 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\cckt9urA.s:1238   .data.szType.0:00000000 $d
+
+UNDEFINED SYMBOLS
+memset
+access
+IniGetProfileInt
+IniGetProfileStr
+sprintf
+strcpy
+AddBackslashEnd
+mkdir
+GetTime
+fopen
+fclose
+vsnprintf
+fflush
+strlen
+fwrite
+SubTime
+sscanf
+strcat
+remove

@@ -1,0 +1,627 @@
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccySj3tX.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"Util.c"
+  14              		.text
+  15              		.section	.rodata
+  16              		.align	2
+  17              	.LC0:
+  18 0000 7200     		.ascii	"r\000"
+  19 0002 0000     		.align	2
+  20              	.LC1:
+  21 0004 5B25735D 		.ascii	"[%s]\000"
+  21      00
+  22 0009 000000   		.align	2
+  23              	.LC2:
+  24 000c 255B5E3D 		.ascii	"%[^=]\000"
+  24      5D00
+  25 0012 0000     		.align	2
+  26              	.LC3:
+  27 0014 255B5E0A 		.ascii	"%[^\012]\000"
+  27      5D00
+  28              		.section	.text.IniGetProfileStr,"ax",%progbits
+  29              		.align	1
+  30              		.global	IniGetProfileStr
+  31              		.syntax unified
+  32              		.thumb
+  33              		.thumb_func
+  35              	IniGetProfileStr:
+  36              		@ args = 0, pretend = 0, frame = 224
+  37              		@ frame_needed = 1, uses_anonymous_args = 0
+  38 0000 80B5     		push	{r7, lr}
+  39 0002 B8B0     		sub	sp, sp, #224
+  40 0004 00AF     		add	r7, sp, #0
+  41 0006 F860     		str	r0, [r7, #12]
+  42 0008 B960     		str	r1, [r7, #8]
+  43 000a 7A60     		str	r2, [r7, #4]
+  44 000c 3B60     		str	r3, [r7]
+  45 000e 07F1B403 		add	r3, r7, #180
+  46 0012 2022     		movs	r2, #32
+  47 0014 0021     		movs	r1, #0
+  48 0016 1846     		mov	r0, r3
+  49 0018 FFF7FEFF 		bl	memset
+  50 001c 07F19403 		add	r3, r7, #148
+  51 0020 2022     		movs	r2, #32
+  52 0022 0021     		movs	r1, #0
+  53 0024 1846     		mov	r0, r3
+  54 0026 FFF7FEFF 		bl	memset
+  55 002a 0023     		movs	r3, #0
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccySj3tX.s 			page 2
+
+
+  56 002c C7F8DC30 		str	r3, [r7, #220]
+  57 0030 5349     		ldr	r1, .L21
+  58 0032 F868     		ldr	r0, [r7, #12]
+  59 0034 FFF7FEFF 		bl	fopen
+  60 0038 C7F8D800 		str	r0, [r7, #216]
+  61 003c D7F8D830 		ldr	r3, [r7, #216]
+  62 0040 002B     		cmp	r3, #0
+  63 0042 02D1     		bne	.L2
+  64 0044 4FF0FF33 		mov	r3, #-1
+  65 0048 95E0     		b	.L15
+  66              	.L2:
+  67 004a 0022     		movs	r2, #0
+  68 004c 0021     		movs	r1, #0
+  69 004e D7F8D800 		ldr	r0, [r7, #216]
+  70 0052 FFF7FEFF 		bl	fseek
+  71 0056 07F1B403 		add	r3, r7, #180
+  72 005a BA68     		ldr	r2, [r7, #8]
+  73 005c 4949     		ldr	r1, .L21+4
+  74 005e 1846     		mov	r0, r3
+  75 0060 FFF7FEFF 		bl	sprintf
+  76 0064 07F19403 		add	r3, r7, #148
+  77 0068 2022     		movs	r2, #32
+  78 006a 0021     		movs	r1, #0
+  79 006c 1846     		mov	r0, r3
+  80 006e FFF7FEFF 		bl	memset
+  81 0072 5EE0     		b	.L4
+  82              	.L13:
+  83 0074 D7F8DC30 		ldr	r3, [r7, #220]
+  84 0078 002B     		cmp	r3, #0
+  85 007a 16D1     		bne	.L5
+  86 007c 3B7D     		ldrb	r3, [r7, #20]	@ zero_extendqisi2
+  87 007e 5B2B     		cmp	r3, #91
+  88 0080 50D1     		bne	.L16
+  89 0082 07F1B403 		add	r3, r7, #180
+  90 0086 1846     		mov	r0, r3
+  91 0088 FFF7FEFF 		bl	strlen
+  92 008c 0246     		mov	r2, r0
+  93 008e 07F1B401 		add	r1, r7, #180
+  94 0092 07F11403 		add	r3, r7, #20
+  95 0096 1846     		mov	r0, r3
+  96 0098 FFF7FEFF 		bl	strncmp
+  97 009c 0346     		mov	r3, r0
+  98 009e 002B     		cmp	r3, #0
+  99 00a0 47D1     		bne	.L4
+ 100 00a2 0123     		movs	r3, #1
+ 101 00a4 C7F8DC30 		str	r3, [r7, #220]
+ 102 00a8 43E0     		b	.L4
+ 103              	.L5:
+ 104 00aa D7F8DC30 		ldr	r3, [r7, #220]
+ 105 00ae 012B     		cmp	r3, #1
+ 106 00b0 3FD1     		bne	.L4
+ 107 00b2 3B7D     		ldrb	r3, [r7, #20]	@ zero_extendqisi2
+ 108 00b4 232B     		cmp	r3, #35
+ 109 00b6 37D0     		beq	.L17
+ 110 00b8 3B7D     		ldrb	r3, [r7, #20]	@ zero_extendqisi2
+ 111 00ba 5B2B     		cmp	r3, #91
+ 112 00bc 4ED0     		beq	.L18
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccySj3tX.s 			page 3
+
+
+ 113 00be 07F11403 		add	r3, r7, #20
+ 114 00c2 3D21     		movs	r1, #61
+ 115 00c4 1846     		mov	r0, r3
+ 116 00c6 FFF7FEFF 		bl	strchr
+ 117 00ca C7F8D400 		str	r0, [r7, #212]
+ 118 00ce D7F8D430 		ldr	r3, [r7, #212]
+ 119 00d2 002B     		cmp	r3, #0
+ 120 00d4 2AD0     		beq	.L19
+ 121 00d6 07F19403 		add	r3, r7, #148
+ 122 00da 2022     		movs	r2, #32
+ 123 00dc 0021     		movs	r1, #0
+ 124 00de 1846     		mov	r0, r3
+ 125 00e0 FFF7FEFF 		bl	memset
+ 126 00e4 07F19402 		add	r2, r7, #148
+ 127 00e8 07F11403 		add	r3, r7, #20
+ 128 00ec 2649     		ldr	r1, .L21+8
+ 129 00ee 1846     		mov	r0, r3
+ 130 00f0 FFF7FEFF 		bl	sscanf
+ 131 00f4 07F19403 		add	r3, r7, #148
+ 132 00f8 7968     		ldr	r1, [r7, #4]
+ 133 00fa 1846     		mov	r0, r3
+ 134 00fc FFF7FEFF 		bl	strcmp
+ 135 0100 0346     		mov	r3, r0
+ 136 0102 002B     		cmp	r3, #0
+ 137 0104 14D1     		bne	.L20
+ 138 0106 D7F8D430 		ldr	r3, [r7, #212]
+ 139 010a 0133     		adds	r3, r3, #1
+ 140 010c C7F8D430 		str	r3, [r7, #212]
+ 141 0110 3A68     		ldr	r2, [r7]
+ 142 0112 1E49     		ldr	r1, .L21+12
+ 143 0114 D7F8D400 		ldr	r0, [r7, #212]
+ 144 0118 FFF7FEFF 		bl	sscanf
+ 145 011c 0223     		movs	r3, #2
+ 146 011e C7F8DC30 		str	r3, [r7, #220]
+ 147 0122 1CE0     		b	.L10
+ 148              	.L16:
+ 149 0124 00BF     		nop
+ 150 0126 04E0     		b	.L4
+ 151              	.L17:
+ 152 0128 00BF     		nop
+ 153 012a 02E0     		b	.L4
+ 154              	.L19:
+ 155 012c 00BF     		nop
+ 156 012e 00E0     		b	.L4
+ 157              	.L20:
+ 158 0130 00BF     		nop
+ 159              	.L4:
+ 160 0132 D7F8D830 		ldr	r3, [r7, #216]
+ 161 0136 B3F90C30 		ldrsh	r3, [r3, #12]
+ 162 013a 9BB2     		uxth	r3, r3
+ 163 013c 03F02003 		and	r3, r3, #32
+ 164 0140 002B     		cmp	r3, #0
+ 165 0142 0CD1     		bne	.L10
+ 166 0144 07F11403 		add	r3, r7, #20
+ 167 0148 D7F8D820 		ldr	r2, [r7, #216]
+ 168 014c 8021     		movs	r1, #128
+ 169 014e 1846     		mov	r0, r3
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccySj3tX.s 			page 4
+
+
+ 170 0150 FFF7FEFF 		bl	fgets
+ 171 0154 0346     		mov	r3, r0
+ 172 0156 002B     		cmp	r3, #0
+ 173 0158 8CD1     		bne	.L13
+ 174 015a 00E0     		b	.L10
+ 175              	.L18:
+ 176 015c 00BF     		nop
+ 177              	.L10:
+ 178 015e D7F8D800 		ldr	r0, [r7, #216]
+ 179 0162 FFF7FEFF 		bl	fclose
+ 180 0166 D7F8DC30 		ldr	r3, [r7, #220]
+ 181 016a 022B     		cmp	r3, #2
+ 182 016c 01D1     		bne	.L14
+ 183 016e 0023     		movs	r3, #0
+ 184 0170 01E0     		b	.L15
+ 185              	.L14:
+ 186 0172 4FF0FF33 		mov	r3, #-1
+ 187              	.L15:
+ 188 0176 1846     		mov	r0, r3
+ 189 0178 E037     		adds	r7, r7, #224
+ 190 017a BD46     		mov	sp, r7
+ 191              		@ sp needed
+ 192 017c 80BD     		pop	{r7, pc}
+ 193              	.L22:
+ 194 017e 00BF     		.align	2
+ 195              	.L21:
+ 196 0180 00000000 		.word	.LC0
+ 197 0184 04000000 		.word	.LC1
+ 198 0188 0C000000 		.word	.LC2
+ 199 018c 14000000 		.word	.LC3
+ 201              		.section	.rodata
+ 202 001a 0000     		.align	2
+ 203              	.LC4:
+ 204 001c 257300   		.ascii	"%s\000"
+ 205              		.section	.text.IniGetProfileInt,"ax",%progbits
+ 206              		.align	1
+ 207              		.global	IniGetProfileInt
+ 208              		.syntax unified
+ 209              		.thumb
+ 210              		.thumb_func
+ 212              	IniGetProfileInt:
+ 213              		@ args = 0, pretend = 0, frame = 256
+ 214              		@ frame_needed = 1, uses_anonymous_args = 0
+ 215 0000 80B5     		push	{r7, lr}
+ 216 0002 C0B0     		sub	sp, sp, #256
+ 217 0004 00AF     		add	r7, sp, #0
+ 218 0006 F860     		str	r0, [r7, #12]
+ 219 0008 B960     		str	r1, [r7, #8]
+ 220 000a 7A60     		str	r2, [r7, #4]
+ 221 000c 07F1D403 		add	r3, r7, #212
+ 222 0010 2022     		movs	r2, #32
+ 223 0012 0021     		movs	r1, #0
+ 224 0014 1846     		mov	r0, r3
+ 225 0016 FFF7FEFF 		bl	memset
+ 226 001a 07F1B403 		add	r3, r7, #180
+ 227 001e 2022     		movs	r2, #32
+ 228 0020 0021     		movs	r1, #0
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccySj3tX.s 			page 5
+
+
+ 229 0022 1846     		mov	r0, r3
+ 230 0024 FFF7FEFF 		bl	memset
+ 231 0028 07F19403 		add	r3, r7, #148
+ 232 002c 2022     		movs	r2, #32
+ 233 002e 0021     		movs	r1, #0
+ 234 0030 1846     		mov	r0, r3
+ 235 0032 FFF7FEFF 		bl	memset
+ 236 0036 0023     		movs	r3, #0
+ 237 0038 C7F8FC30 		str	r3, [r7, #252]
+ 238 003c 5749     		ldr	r1, .L43
+ 239 003e F868     		ldr	r0, [r7, #12]
+ 240 0040 FFF7FEFF 		bl	fopen
+ 241 0044 C7F8F800 		str	r0, [r7, #248]
+ 242 0048 D7F8F830 		ldr	r3, [r7, #248]
+ 243 004c 002B     		cmp	r3, #0
+ 244 004e 02D1     		bne	.L24
+ 245 0050 4FF0FF33 		mov	r3, #-1
+ 246 0054 9CE0     		b	.L37
+ 247              	.L24:
+ 248 0056 0022     		movs	r2, #0
+ 249 0058 0021     		movs	r1, #0
+ 250 005a D7F8F800 		ldr	r0, [r7, #248]
+ 251 005e FFF7FEFF 		bl	fseek
+ 252 0062 07F1D403 		add	r3, r7, #212
+ 253 0066 BA68     		ldr	r2, [r7, #8]
+ 254 0068 4D49     		ldr	r1, .L43+4
+ 255 006a 1846     		mov	r0, r3
+ 256 006c FFF7FEFF 		bl	sprintf
+ 257 0070 07F1B403 		add	r3, r7, #180
+ 258 0074 2022     		movs	r2, #32
+ 259 0076 0021     		movs	r1, #0
+ 260 0078 1846     		mov	r0, r3
+ 261 007a FFF7FEFF 		bl	memset
+ 262 007e 60E0     		b	.L26
+ 263              	.L35:
+ 264 0080 D7F8FC30 		ldr	r3, [r7, #252]
+ 265 0084 002B     		cmp	r3, #0
+ 266 0086 16D1     		bne	.L27
+ 267 0088 3B7D     		ldrb	r3, [r7, #20]	@ zero_extendqisi2
+ 268 008a 5B2B     		cmp	r3, #91
+ 269 008c 52D1     		bne	.L38
+ 270 008e 07F1D403 		add	r3, r7, #212
+ 271 0092 1846     		mov	r0, r3
+ 272 0094 FFF7FEFF 		bl	strlen
+ 273 0098 0246     		mov	r2, r0
+ 274 009a 07F1D401 		add	r1, r7, #212
+ 275 009e 07F11403 		add	r3, r7, #20
+ 276 00a2 1846     		mov	r0, r3
+ 277 00a4 FFF7FEFF 		bl	strncmp
+ 278 00a8 0346     		mov	r3, r0
+ 279 00aa 002B     		cmp	r3, #0
+ 280 00ac 49D1     		bne	.L26
+ 281 00ae 0123     		movs	r3, #1
+ 282 00b0 C7F8FC30 		str	r3, [r7, #252]
+ 283 00b4 45E0     		b	.L26
+ 284              	.L27:
+ 285 00b6 D7F8FC30 		ldr	r3, [r7, #252]
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccySj3tX.s 			page 6
+
+
+ 286 00ba 012B     		cmp	r3, #1
+ 287 00bc 41D1     		bne	.L26
+ 288 00be 3B7D     		ldrb	r3, [r7, #20]	@ zero_extendqisi2
+ 289 00c0 232B     		cmp	r3, #35
+ 290 00c2 39D0     		beq	.L39
+ 291 00c4 3B7D     		ldrb	r3, [r7, #20]	@ zero_extendqisi2
+ 292 00c6 5B2B     		cmp	r3, #91
+ 293 00c8 50D0     		beq	.L40
+ 294 00ca 07F11403 		add	r3, r7, #20
+ 295 00ce 3D21     		movs	r1, #61
+ 296 00d0 1846     		mov	r0, r3
+ 297 00d2 FFF7FEFF 		bl	strchr
+ 298 00d6 C7F8F400 		str	r0, [r7, #244]
+ 299 00da D7F8F430 		ldr	r3, [r7, #244]
+ 300 00de 002B     		cmp	r3, #0
+ 301 00e0 2CD0     		beq	.L41
+ 302 00e2 07F1B403 		add	r3, r7, #180
+ 303 00e6 2022     		movs	r2, #32
+ 304 00e8 0021     		movs	r1, #0
+ 305 00ea 1846     		mov	r0, r3
+ 306 00ec FFF7FEFF 		bl	memset
+ 307 00f0 07F1B402 		add	r2, r7, #180
+ 308 00f4 07F11403 		add	r3, r7, #20
+ 309 00f8 2A49     		ldr	r1, .L43+8
+ 310 00fa 1846     		mov	r0, r3
+ 311 00fc FFF7FEFF 		bl	sscanf
+ 312 0100 07F1B403 		add	r3, r7, #180
+ 313 0104 7968     		ldr	r1, [r7, #4]
+ 314 0106 1846     		mov	r0, r3
+ 315 0108 FFF7FEFF 		bl	strcmp
+ 316 010c 0346     		mov	r3, r0
+ 317 010e 002B     		cmp	r3, #0
+ 318 0110 16D1     		bne	.L42
+ 319 0112 D7F8F430 		ldr	r3, [r7, #244]
+ 320 0116 0133     		adds	r3, r3, #1
+ 321 0118 C7F8F430 		str	r3, [r7, #244]
+ 322 011c 07F19403 		add	r3, r7, #148
+ 323 0120 1A46     		mov	r2, r3
+ 324 0122 2149     		ldr	r1, .L43+12
+ 325 0124 D7F8F400 		ldr	r0, [r7, #244]
+ 326 0128 FFF7FEFF 		bl	sscanf
+ 327 012c 0223     		movs	r3, #2
+ 328 012e C7F8FC30 		str	r3, [r7, #252]
+ 329 0132 1CE0     		b	.L32
+ 330              	.L38:
+ 331 0134 00BF     		nop
+ 332 0136 04E0     		b	.L26
+ 333              	.L39:
+ 334 0138 00BF     		nop
+ 335 013a 02E0     		b	.L26
+ 336              	.L41:
+ 337 013c 00BF     		nop
+ 338 013e 00E0     		b	.L26
+ 339              	.L42:
+ 340 0140 00BF     		nop
+ 341              	.L26:
+ 342 0142 D7F8F830 		ldr	r3, [r7, #248]
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccySj3tX.s 			page 7
+
+
+ 343 0146 B3F90C30 		ldrsh	r3, [r3, #12]
+ 344 014a 9BB2     		uxth	r3, r3
+ 345 014c 03F02003 		and	r3, r3, #32
+ 346 0150 002B     		cmp	r3, #0
+ 347 0152 0CD1     		bne	.L32
+ 348 0154 07F11403 		add	r3, r7, #20
+ 349 0158 D7F8F820 		ldr	r2, [r7, #248]
+ 350 015c 8021     		movs	r1, #128
+ 351 015e 1846     		mov	r0, r3
+ 352 0160 FFF7FEFF 		bl	fgets
+ 353 0164 0346     		mov	r3, r0
+ 354 0166 002B     		cmp	r3, #0
+ 355 0168 8AD1     		bne	.L35
+ 356 016a 00E0     		b	.L32
+ 357              	.L40:
+ 358 016c 00BF     		nop
+ 359              	.L32:
+ 360 016e D7F8F800 		ldr	r0, [r7, #248]
+ 361 0172 FFF7FEFF 		bl	fclose
+ 362 0176 D7F8FC30 		ldr	r3, [r7, #252]
+ 363 017a 022B     		cmp	r3, #2
+ 364 017c 06D1     		bne	.L36
+ 365 017e 07F19403 		add	r3, r7, #148
+ 366 0182 1846     		mov	r0, r3
+ 367 0184 FFF7FEFF 		bl	atoi
+ 368 0188 0346     		mov	r3, r0
+ 369 018a 01E0     		b	.L37
+ 370              	.L36:
+ 371 018c 4FF0FF33 		mov	r3, #-1
+ 372              	.L37:
+ 373 0190 1846     		mov	r0, r3
+ 374 0192 07F58077 		add	r7, r7, #256
+ 375 0196 BD46     		mov	sp, r7
+ 376              		@ sp needed
+ 377 0198 80BD     		pop	{r7, pc}
+ 378              	.L44:
+ 379 019a 00BF     		.align	2
+ 380              	.L43:
+ 381 019c 00000000 		.word	.LC0
+ 382 01a0 04000000 		.word	.LC1
+ 383 01a4 0C000000 		.word	.LC2
+ 384 01a8 1C000000 		.word	.LC4
+ 386              		.section	.text.AddBackslashEnd,"ax",%progbits
+ 387              		.align	1
+ 388              		.global	AddBackslashEnd
+ 389              		.syntax unified
+ 390              		.thumb
+ 391              		.thumb_func
+ 393              	AddBackslashEnd:
+ 394              		@ args = 0, pretend = 0, frame = 8
+ 395              		@ frame_needed = 1, uses_anonymous_args = 0
+ 396 0000 80B5     		push	{r7, lr}
+ 397 0002 82B0     		sub	sp, sp, #8
+ 398 0004 00AF     		add	r7, sp, #0
+ 399 0006 7860     		str	r0, [r7, #4]
+ 400 0008 7868     		ldr	r0, [r7, #4]
+ 401 000a FFF7FEFF 		bl	strlen
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccySj3tX.s 			page 8
+
+
+ 402 000e 0346     		mov	r3, r0
+ 403 0010 013B     		subs	r3, r3, #1
+ 404 0012 7A68     		ldr	r2, [r7, #4]
+ 405 0014 1344     		add	r3, r3, r2
+ 406 0016 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 407 0018 5C2B     		cmp	r3, #92
+ 408 001a 07D0     		beq	.L46
+ 409 001c 7868     		ldr	r0, [r7, #4]
+ 410 001e FFF7FEFF 		bl	strlen
+ 411 0022 0246     		mov	r2, r0
+ 412 0024 7B68     		ldr	r3, [r7, #4]
+ 413 0026 1344     		add	r3, r3, r2
+ 414 0028 5C22     		movs	r2, #92
+ 415 002a 1A70     		strb	r2, [r3]
+ 416              	.L46:
+ 417 002c 7B68     		ldr	r3, [r7, #4]
+ 418 002e 1846     		mov	r0, r3
+ 419 0030 0837     		adds	r7, r7, #8
+ 420 0032 BD46     		mov	sp, r7
+ 421              		@ sp needed
+ 422 0034 80BD     		pop	{r7, pc}
+ 424              		.section	.text.GetTime,"ax",%progbits
+ 425              		.align	1
+ 426              		.global	GetTime
+ 427              		.syntax unified
+ 428              		.thumb
+ 429              		.thumb_func
+ 431              	GetTime:
+ 432              		@ args = 0, pretend = 0, frame = 40
+ 433              		@ frame_needed = 1, uses_anonymous_args = 0
+ 434 0000 80B5     		push	{r7, lr}
+ 435 0002 8AB0     		sub	sp, sp, #40
+ 436 0004 00AF     		add	r7, sp, #0
+ 437 0006 7860     		str	r0, [r7, #4]
+ 438 0008 0023     		movs	r3, #0
+ 439 000a 7B62     		str	r3, [r7, #36]
+ 440 000c 07F10803 		add	r3, r7, #8
+ 441 0010 0021     		movs	r1, #0
+ 442 0012 1846     		mov	r0, r3
+ 443 0014 FFF7FEFF 		bl	gettimeofday
+ 444 0018 3A69     		ldr	r2, [r7, #16]
+ 445 001a 7B68     		ldr	r3, [r7, #4]
+ 446 001c 9A61     		str	r2, [r3, #24]
+ 447 001e 07F11803 		add	r3, r7, #24
+ 448 0022 1846     		mov	r0, r3
+ 449 0024 FFF7FEFF 		bl	time
+ 450 0028 07F11803 		add	r3, r7, #24
+ 451 002c 1846     		mov	r0, r3
+ 452 002e FFF7FEFF 		bl	localtime
+ 453 0032 7862     		str	r0, [r7, #36]
+ 454 0034 7B6A     		ldr	r3, [r7, #36]
+ 455 0036 5B69     		ldr	r3, [r3, #20]
+ 456 0038 03F26C72 		addw	r2, r3, #1900
+ 457 003c 7B68     		ldr	r3, [r7, #4]
+ 458 003e 1A60     		str	r2, [r3]
+ 459 0040 7B6A     		ldr	r3, [r7, #36]
+ 460 0042 1B69     		ldr	r3, [r3, #16]
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccySj3tX.s 			page 9
+
+
+ 461 0044 5A1C     		adds	r2, r3, #1
+ 462 0046 7B68     		ldr	r3, [r7, #4]
+ 463 0048 5A60     		str	r2, [r3, #4]
+ 464 004a 7B6A     		ldr	r3, [r7, #36]
+ 465 004c DA68     		ldr	r2, [r3, #12]
+ 466 004e 7B68     		ldr	r3, [r7, #4]
+ 467 0050 9A60     		str	r2, [r3, #8]
+ 468 0052 7B6A     		ldr	r3, [r7, #36]
+ 469 0054 9A68     		ldr	r2, [r3, #8]
+ 470 0056 7B68     		ldr	r3, [r7, #4]
+ 471 0058 DA60     		str	r2, [r3, #12]
+ 472 005a 7B6A     		ldr	r3, [r7, #36]
+ 473 005c 5A68     		ldr	r2, [r3, #4]
+ 474 005e 7B68     		ldr	r3, [r7, #4]
+ 475 0060 1A61     		str	r2, [r3, #16]
+ 476 0062 7B6A     		ldr	r3, [r7, #36]
+ 477 0064 1A68     		ldr	r2, [r3]
+ 478 0066 7B68     		ldr	r3, [r7, #4]
+ 479 0068 5A61     		str	r2, [r3, #20]
+ 480 006a 00BF     		nop
+ 481 006c 2837     		adds	r7, r7, #40
+ 482 006e BD46     		mov	sp, r7
+ 483              		@ sp needed
+ 484 0070 80BD     		pop	{r7, pc}
+ 486              		.section	.rodata
+ 487 001f 00       		.align	2
+ 488              	.LC5:
+ 489 0020 25303464 		.ascii	"%04d%02d%02d\000"
+ 489      25303264 
+ 489      25303264 
+ 489      00
+ 490              		.section	.text.SubTime,"ax",%progbits
+ 491              		.align	1
+ 492              		.global	SubTime
+ 493              		.syntax unified
+ 494              		.thumb
+ 495              		.thumb_func
+ 497              	SubTime:
+ 498              		@ args = 0, pretend = 0, frame = 88
+ 499              		@ frame_needed = 1, uses_anonymous_args = 0
+ 500 0000 2DE9B043 		push	{r4, r5, r7, r8, r9, lr}
+ 501 0004 98B0     		sub	sp, sp, #96
+ 502 0006 02AF     		add	r7, sp, #8
+ 503 0008 7860     		str	r0, [r7, #4]
+ 504 000a 3960     		str	r1, [r7]
+ 505 000c 0023     		movs	r3, #0
+ 506 000e 7B65     		str	r3, [r7, #84]
+ 507 0010 07F11003 		add	r3, r7, #16
+ 508 0014 4022     		movs	r2, #64
+ 509 0016 0021     		movs	r1, #0
+ 510 0018 1846     		mov	r0, r3
+ 511 001a FFF7FEFF 		bl	memset
+ 512 001e 7B68     		ldr	r3, [r7, #4]
+ 513 0020 1E4A     		ldr	r2, .L50
+ 514 0022 02FB03F3 		mul	r3, r2, r3
+ 515 0026 3B65     		str	r3, [r7, #80]
+ 516 0028 07F10803 		add	r3, r7, #8
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccySj3tX.s 			page 10
+
+
+ 517 002c 1846     		mov	r0, r3
+ 518 002e FFF7FEFF 		bl	time
+ 519 0032 D7E90223 		ldrd	r2, [r7, #8]
+ 520 0036 396D     		ldr	r1, [r7, #80]
+ 521 0038 C817     		asrs	r0, r1, #31
+ 522 003a 0C46     		mov	r4, r1
+ 523 003c 0546     		mov	r5, r0
+ 524 003e B2EB0408 		subs	r8, r2, r4
+ 525 0042 63EB0509 		sbc	r9, r3, r5
+ 526 0046 C7E90289 		strd	r8, [r7, #8]
+ 527 004a 07F10803 		add	r3, r7, #8
+ 528 004e 1846     		mov	r0, r3
+ 529 0050 FFF7FEFF 		bl	localtime
+ 530 0054 7865     		str	r0, [r7, #84]
+ 531 0056 07F11003 		add	r3, r7, #16
+ 532 005a 4022     		movs	r2, #64
+ 533 005c 0021     		movs	r1, #0
+ 534 005e 1846     		mov	r0, r3
+ 535 0060 FFF7FEFF 		bl	memset
+ 536 0064 7B6D     		ldr	r3, [r7, #84]
+ 537 0066 5B69     		ldr	r3, [r3, #20]
+ 538 0068 03F26C72 		addw	r2, r3, #1900
+ 539 006c 7B6D     		ldr	r3, [r7, #84]
+ 540 006e 1B69     		ldr	r3, [r3, #16]
+ 541 0070 591C     		adds	r1, r3, #1
+ 542 0072 7B6D     		ldr	r3, [r7, #84]
+ 543 0074 DB68     		ldr	r3, [r3, #12]
+ 544 0076 07F11000 		add	r0, r7, #16
+ 545 007a 0093     		str	r3, [sp]
+ 546 007c 0B46     		mov	r3, r1
+ 547 007e 0849     		ldr	r1, .L50+4
+ 548 0080 FFF7FEFF 		bl	sprintf
+ 549 0084 07F11003 		add	r3, r7, #16
+ 550 0088 1946     		mov	r1, r3
+ 551 008a 3868     		ldr	r0, [r7]
+ 552 008c FFF7FEFF 		bl	strcpy
+ 553 0090 00BF     		nop
+ 554 0092 5837     		adds	r7, r7, #88
+ 555 0094 BD46     		mov	sp, r7
+ 556              		@ sp needed
+ 557 0096 BDE8B083 		pop	{r4, r5, r7, r8, r9, pc}
+ 558              	.L51:
+ 559 009a 00BF     		.align	2
+ 560              	.L50:
+ 561 009c 80510100 		.word	86400
+ 562 00a0 20000000 		.word	.LC5
+ 564              		.ident	"GCC: (Arm GNU Toolchain 13.2.rel1 (Build arm-13.7)) 13.2.1 20231009"
+ARM GAS  C:\Users\ADMINI~1\AppData\Local\Temp\ccySj3tX.s 			page 11
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 Util.c
+C:\Users\ADMINI~1\AppData\Local\Temp\ccySj3tX.s:16     .rodata:00000000 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccySj3tX.s:29     .text.IniGetProfileStr:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccySj3tX.s:35     .text.IniGetProfileStr:00000000 IniGetProfileStr
+C:\Users\ADMINI~1\AppData\Local\Temp\ccySj3tX.s:196    .text.IniGetProfileStr:00000180 $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccySj3tX.s:206    .text.IniGetProfileInt:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccySj3tX.s:212    .text.IniGetProfileInt:00000000 IniGetProfileInt
+C:\Users\ADMINI~1\AppData\Local\Temp\ccySj3tX.s:381    .text.IniGetProfileInt:0000019c $d
+C:\Users\ADMINI~1\AppData\Local\Temp\ccySj3tX.s:387    .text.AddBackslashEnd:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccySj3tX.s:393    .text.AddBackslashEnd:00000000 AddBackslashEnd
+C:\Users\ADMINI~1\AppData\Local\Temp\ccySj3tX.s:425    .text.GetTime:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccySj3tX.s:431    .text.GetTime:00000000 GetTime
+C:\Users\ADMINI~1\AppData\Local\Temp\ccySj3tX.s:491    .text.SubTime:00000000 $t
+C:\Users\ADMINI~1\AppData\Local\Temp\ccySj3tX.s:497    .text.SubTime:00000000 SubTime
+C:\Users\ADMINI~1\AppData\Local\Temp\ccySj3tX.s:561    .text.SubTime:0000009c $d
+
+UNDEFINED SYMBOLS
+memset
+fopen
+fseek
+sprintf
+strlen
+strncmp
+strchr
+sscanf
+strcmp
+fgets
+fclose
+atoi
+gettimeofday
+time
+localtime
+strcpy

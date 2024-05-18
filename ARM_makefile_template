@@ -1,0 +1,115 @@
+DIRS = src dlltest
+
+INC_DIR=/I..\include /I"D:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.39.33519\include"
+
+PREFIX = arm-none-eabi-
+# The gcc compiler bin path can be either defined in make command via GCC_PATH variable (> make GCC_PATH=xxx)
+# either it can be added to the PATH environment variable.
+ifdef GCC_PATH
+CC = $(GCC_PATH)/$(PREFIX)gcc
+AR = $(GCC_PATH)/$(PREFIX)ar
+AS = $(GCC_PATH)/$(PREFIX)gcc -x assembler-with-cpp
+CP = $(GCC_PATH)/$(PREFIX)objcopy
+SZ = $(GCC_PATH)/$(PREFIX)size
+else
+CC = $(PREFIX)gcc
+AR = $(PREFIX)ar
+AS = $(PREFIX)gcc -x assembler-with-cpp
+CP = $(PREFIX)objcopy
+SZ = $(PREFIX)size
+endif
+HEX = $(CP) -O ihex
+BIN = $(CP) -O binary -S
+
+CPPFLAGS = /EHsc /nologo $(INC_DIR) /DWIN32 
+#######################################
+# CFLAGS
+#######################################
+# cpu
+CPU = -mcpu=cortex-m3
+
+# mcu
+MCU = $(CPU) -mthumb $(FPU) $(FLOAT-ABI)
+
+# macros for gcc
+# AS defines
+AS_DEFS = 
+
+# C defines
+C_DEFS =  \
+-D_DEBUG \
+-DZSSLOG_EXPORTS
+
+# AS includes
+AS_INCLUDES = 
+
+# C includes
+C_INCLUDES =  \
+-ISD_Card \
+-IFATFS_V0.08A/src \
+-I../include \
+
+CFLAGS += $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
+
+CFLAGS += -MMD -MP -MF"$(@:%.o=%.d)"
+
+#######################################
+# paths
+#######################################
+# Build path
+BUILD_DIR = ..\build_arm
+
+#######################################
+# LDFLAGS
+#######################################
+# link script
+LDSCRIPT = Start/STM32F103C8Tx_FLASH.ld
+
+# libraries
+LIBS = -lc -lm -lnosys 
+LIBDIR = 
+LDFLAGS = $(MCU) -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) -Wl,-Map=$(BUILD_DIR)/$(TARGET).map,--cref -Wl,--gc-sections
+
+# default action: build all
+# all: $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).hex $(BUILD_DIR)/$(TARGET).bin
+
+C_SOURCES = Util.c ZssLog.c
+
+LIB = libZssLog.a
+
+#######################################
+# build the application
+#######################################
+# list of objects
+OBJECTS = $(addprefix $(BUILD_DIR)/,$(notdir $(C_SOURCES:.c=.o)))
+
+# all: $(LIB)
+
+$(BUILD_DIR)/$(LIB): $(OBJECTS)
+	$(AR) rcs $@ $^ -lc
+
+# $(BUILD_DIR)/%.o: %.c Makefile | $(BUILD_DIR) 
+$(BUILD_DIR)/%.o: %.c Makefile | $(BUILD_DIR) 
+	$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
+
+$(BUILD_DIR):
+	mkdir $@		
+
+#######################################
+# clean up
+#######################################
+clean:
+	-rm -fR $(BUILD_DIR)
+
+#######################################
+# openocd
+#######################################
+flash: all
+	openocd -f interface/stlink.cfg -f target/stm32f1x-mod.cfg -c "program $(BUILD_DIR)/$(TARGET).elf verify exit"
+  
+#######################################
+# dependencies
+#######################################
+-include $(wildcard $(BUILD_DIR)/*.d)
+
+# *** EOF ***
